@@ -1,0 +1,24 @@
+{
+  "name": "I am that Girl! — Le petit guide marketing de Marie",
+  "short_name": "Marie",
+  "description": "Le petit guide de stratégie marketing de Marie pour son salon de beauté : plan du jour, cadres, kit de marque, réseaux sociaux, idées, visibilité, calendrier, commercialisation et assistante IA.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F7DCE5",
+  "theme_color": "#3B1E3D",
+  "categories": ["business", "productivity", "lifestyle"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Aujourd'hui", "url": "./#today" },
+    { "name": "Banque d'idées", "url": "./#ideas" },
+    { "name": "Calendrier", "url": "./#calendar" },
+    { "name": "Assistante IA", "url": "./#ai" }
+  ]
+}

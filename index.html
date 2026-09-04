@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>I am that Girl! · Le petit guide marketing de Marie</title>
+<meta name="description" content="Le petit guide de stratégie marketing de Marie : cadres, kit de marque, réseaux sociaux, idées, visibilité, calendrier, commercialisation et assistant IA pour un salon de beauté.">
+<meta name="theme-color" content="#3B1E3D">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Marie">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,100&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF7F4; --paper-2:#F3ECE7; --ink:#2A2226; --ink-2:#6B5F65;
+  --plum:#3B1E3D; --choco:#4A2C2A; --rose:#C96A8C; --rose-2:#F2D9E3; --rose-3:#E9B8CA; --sage:#7E9C8B; --sage-2:#E3ECE6; --line:#E4D9D3;
+  --glass:rgba(255,255,255,.58); --glass-strong:rgba(255,255,255,.74); --glass-border:rgba(255,255,255,.75); --glass-shadow:0 10px 30px rgba(74,44,42,.10), inset 0 1px 0 rgba(255,255,255,.9);
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;color:var(--ink);font-family:'Karla',system-ui,sans-serif;font-size:16px;line-height:1.55}
+body{background:linear-gradient(160deg,#FBF1F3 0%,#F6E4EA 35%,#F3E9E3 70%,#FBF7F4 100%);background-attachment:fixed;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:500;line-height:1.15;margin:0 0 .4em;letter-spacing:-.01em;color:var(--plum)}
+h1{font-size:2.1rem} h2{font-size:1.5rem;margin-top:1.4em} h3{font-size:1.15rem;margin-top:1.2em} h4{font-size:1rem;margin-top:1em;font-family:'Karla';font-weight:600;color:var(--ink)}
+p{margin:.35em 0 .9em;max-width:72ch}
+ul,ol{max-width:72ch;padding-left:1.25em;margin:.3em 0 .9em} li{margin:.25em 0}
+a{color:var(--plum)}
+button{font-family:inherit;font-size:.95rem;cursor:pointer;border:1.5px solid var(--plum);background:var(--plum);color:#fff;padding:.55em 1.1em;border-radius:999px;transition:transform .15s,box-shadow .15s}
+button:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(59,30,61,.2)}
+button.ghost{background:rgba(255,255,255,.5);color:var(--plum);backdrop-filter:blur(8px)}
+button.rose{background:var(--rose);border-color:var(--rose)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--rose);outline-offset:2px}
+input,textarea,select{font-family:inherit;font-size:.95rem;padding:.6em .75em;border:1.5px solid rgba(228,217,211,.9);border-radius:10px;background:rgba(255,255,255,.7);color:var(--ink);width:100%;backdrop-filter:blur(6px)}
+textarea{min-height:80px;resize:vertical}
+label{display:block;font-weight:600;font-size:.9rem;margin:.9em 0 .3em}
+
+/* ---- sakura canvas ---- */
+#sakura{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+
+/* ---- splash ---- */
+#splash{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;cursor:pointer;background:radial-gradient(ellipse at 30% 20%,rgba(255,255,255,.55),transparent 55%),linear-gradient(160deg,#F7DCE5 0%,#EFC8D6 45%,#E7B4C6 100%);transition:opacity .7s ease,transform .7s ease;padding:24px}
+#splash.hide{opacity:0;transform:scale(1.04);pointer-events:none}
+#splash .glass{background:var(--glass);border:1.5px solid var(--glass-border);box-shadow:var(--glass-shadow);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);border-radius:32px;padding:56px 48px;max-width:560px;animation:float 6s ease-in-out infinite}
+#splash h1{font-size:clamp(2.6rem,8vw,4.4rem);font-style:italic;font-weight:400;color:var(--plum);margin:0 0 .2em;font-variation-settings:"SOFT" 100}
+#splash h1 span{color:var(--rose)}
+#splash p.sub{font-family:'Fraunces',serif;font-size:1.25rem;color:var(--choco);margin:0 0 2em}
+#splash p.tap{font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;color:var(--plum);opacity:.75;animation:pulse 2s ease-in-out infinite;margin:0}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
+
+/* ---- layout ---- */
+.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh;position:relative;z-index:1}
+nav{background:linear-gradient(180deg,rgba(59,30,61,.94),rgba(74,44,42,.94));color:#fff;padding:28px 16px;position:sticky;top:0;height:100vh;overflow:auto;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-right:1px solid rgba(255,255,255,.12)}
+nav .brand{font-family:'Fraunces',serif;font-size:1.3rem;margin:0 8px 22px;line-height:1.2;font-style:italic}
+nav .brand small{display:block;font-family:'Karla';font-style:normal;font-size:.75rem;opacity:.7;margin-top:4px}
+nav button{display:block;width:100%;text-align:left;background:transparent;border:0;color:#fff;opacity:.72;padding:.6em .8em;border-radius:12px;margin:2px 0;font-size:.95rem}
+nav button:hover{opacity:1;background:rgba(255,255,255,.1);transform:none;box-shadow:none}
+nav button.active{opacity:1;background:rgba(201,106,140,.85);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+main{padding:40px 48px 90px;max-width:1120px;width:100%}
+section.view{display:none;animation:fadeup .35s ease} section.view.active{display:block}
+@keyframes fadeup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.lede{font-size:1.1rem;color:var(--ink-2);max-width:66ch}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+
+/* ---- liquid glass cards ---- */
+.card{background:var(--glass);border:1.5px solid var(--glass-border);border-radius:var(--radius);padding:20px 22px;backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);box-shadow:var(--glass-shadow);position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,0) 40%,rgba(255,255,255,0) 60%,rgba(255,255,255,.25) 100%);pointer-events:none}
+.card>*{position:relative}
+.card h3{margin-top:0}
+.card.rose{background:linear-gradient(135deg,rgba(242,217,227,.85),rgba(233,184,202,.6))}
+.card.plum{background:linear-gradient(135deg,rgba(59,30,61,.92),rgba(74,44,42,.88));color:#fff;border-color:rgba(255,255,255,.25)}
+.card.plum h3,.card.plum h2{color:#fff}.card.plum p{color:rgba(255,255,255,.85)}
+.tag{display:inline-block;font-size:.75rem;padding:.15em .65em;border-radius:999px;background:var(--rose-2);color:var(--plum);margin:0 4px 4px 0}
+.tag.sage{background:var(--sage-2)}
+.note{background:rgba(242,217,227,.55);border-left:4px solid var(--rose);padding:12px 16px;border-radius:0 12px 12px 0;margin:14px 0;max-width:72ch;backdrop-filter:blur(8px)}
+details{border-top:1.5px solid rgba(228,217,211,.8);padding:12px 0}
+details summary{cursor:pointer;font-weight:600;font-size:1.02rem;list-style:none;display:flex;justify-content:space-between}
+details summary::after{content:"+";color:var(--rose);font-size:1.3rem;line-height:1}
+details[open] summary::after{content:"–"}
+table{border-collapse:collapse;width:100%;margin:.6em 0 1.2em;font-size:.93rem}
+th,td{text-align:left;padding:.55em .7em;border-bottom:1px solid rgba(228,217,211,.8);vertical-align:top}
+th{background:rgba(242,217,227,.5);font-weight:600}
+.tbl{overflow-x:auto}
+.funnel{display:flex;gap:8px;margin:18px 0 24px}
+.funnel div{flex:1;background:var(--plum);color:#fff;padding:14px 12px;border-radius:14px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
+.funnel div b{display:block;font-family:'Fraunces',serif;font-size:1.25rem;font-weight:500}
+.funnel div span{font-size:.8rem;opacity:.8}
+.funnel div:nth-child(2){background:#5A3260}.funnel div:nth-child(3){background:var(--rose)}.funnel div:nth-child(4){background:#A57C8E}.funnel div:nth-child(5){background:var(--sage)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 18px}
+.filters select,.filters input{width:auto}
+.idea{background:var(--glass);border:1.5px solid var(--glass-border);border-radius:14px;padding:14px 16px;margin:8px 0;backdrop-filter:blur(12px)}
+.idea b{display:block;font-size:1.02rem;color:var(--plum)}
+.idea p{margin:.3em 0 .5em;font-size:.93rem}
+.draw{background:linear-gradient(135deg,rgba(59,30,61,.95),rgba(201,106,140,.9));color:#fff;border-radius:22px;padding:28px 30px;margin:10px 0 26px;position:relative;min-height:150px;box-shadow:0 16px 40px rgba(59,30,61,.25),inset 0 1px 0 rgba(255,255,255,.35)}
+.draw h3{margin:0 0 .3em;font-size:1.5rem;color:#fff}
+.draw p{color:rgba(255,255,255,.88)}
+.draw .tag{background:rgba(255,255,255,.18);color:#fff}
+.check label{font-weight:400;display:flex;gap:10px;align-items:flex-start;margin:.35em 0;font-size:.97rem}
+.check input{width:auto;margin-top:5px;accent-color:var(--rose)}
+.progress{height:8px;background:rgba(228,217,211,.8);border-radius:99px;overflow:hidden;margin:8px 0 18px;max-width:400px}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--rose),var(--sage));width:0;transition:width .3s}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:14px 0}
+.cal div{background:var(--glass);border:1.5px solid var(--glass-border);border-radius:12px;padding:8px;font-size:.8rem;min-height:90px;backdrop-filter:blur(10px)}
+.cal div b{display:block;font-size:.72rem;color:var(--ink-2);margin-bottom:4px}
+.cal .pill{display:inline-block;background:var(--rose-2);border-radius:6px;padding:1px 6px;font-size:.72rem;margin-bottom:3px}
+.out{white-space:pre-wrap;background:var(--glass-strong);border:1.5px solid var(--glass-border);border-radius:var(--radius);padding:16px;margin-top:12px;font-size:.95rem;min-height:60px;backdrop-filter:blur(12px)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.row select,.row input{width:auto;flex:1}
+.small{font-size:.85rem;color:var(--ink-2)}
+.big-num{font-family:'Fraunces',serif;font-size:2rem;color:var(--rose);font-weight:400}
+
+/* ---- today ---- */
+.hello{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:8px}
+.hello h1{font-size:clamp(2rem,5vw,3rem);font-style:italic;font-weight:400}
+.hello .date{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--choco);text-transform:capitalize}
+.affirm{font-family:'Fraunces',serif;font-size:1.5rem;font-style:italic;font-weight:300;color:var(--plum);line-height:1.35;max-width:36ch}
+.todo{display:flex;gap:14px;align-items:flex-start}
+.todo input{width:22px;height:22px;margin-top:3px;accent-color:var(--rose);flex:none}
+.todo .k{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);display:block;margin-bottom:4px}
+.todo b{display:block;font-family:'Fraunces',serif;font-weight:500;font-size:1.05rem;color:var(--plum)}
+.todo p{font-size:.9rem;margin:.3em 0 .5em}
+.todo.done b{text-decoration:line-through;opacity:.55}
+.linkbtn{background:none;border:0;color:var(--rose);padding:0;font-size:.85rem;font-weight:600;text-decoration:underline}
+.linkbtn:hover{transform:none;box-shadow:none}
+.stat{text-align:center}
+.stat .big-num{font-size:2.4rem;display:block}
+.stat span{font-size:.85rem;color:var(--ink-2)}
+
+/* ---- commercialisation ---- */
+.stream{display:flex;flex-direction:column;gap:6px}
+.stream .price{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--rose)}
+.ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0}
+.ladder .card{text-align:center}
+.ladder .card.mid{transform:scale(1.04);border-color:var(--rose);background:linear-gradient(135deg,rgba(242,217,227,.9),rgba(255,255,255,.7))}
+.calc-out{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--plum);margin-top:8px}
+
+@media(max-width:860px){
+  .app{grid-template-columns:1fr}
+  nav{height:auto;position:sticky;padding:10px 10px;display:flex;gap:4px;overflow-x:auto;white-space:nowrap;border-right:0;border-bottom:1px solid rgba(255,255,255,.15)}
+  nav .brand{display:none}
+  nav button{width:auto;display:inline-block;font-size:.85rem;padding:.5em .75em}
+  main{padding:22px 16px 70px}
+  .two,.three,.four,.ladder{grid-template-columns:1fr}
+  .ladder .card.mid{transform:none}
+  .funnel{flex-direction:column}
+  .cal{grid-template-columns:repeat(2,1fr)}
+  #splash .glass{padding:40px 26px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}#sakura{display:none}}
+</style>
+</head>
+<body>
+<canvas id="sakura" aria-hidden="true"></canvas>
+
+<!-- ============ OUVERTURE ============ -->
+<div id="splash" role="button" tabindex="0" aria-label="Ouvrir l'application">
+  <div class="glass">
+    <h1>I am <span>that</span> Girl!</h1>
+    <p class="sub">Le petit guide de stratégie marketing de Marie</p>
+    <p class="tap">Touche pour ouvrir</p>
+  </div>
+</div>
+
+<div class="app">
+<nav id="nav" aria-label="Navigation principale">
+  <div class="brand">I am that Girl!<small>Le guide marketing de Marie</small></div>
+  <button data-v="today" class="active">Aujourd'hui</button>
+  <button data-v="start">Commencer ici</button>
+  <button data-v="frameworks">Cadres stratégiques</button>
+  <button data-v="brand">Kit de marque</button>
+  <button data-v="social">Réseaux sociaux</button>
+  <button data-v="ideas">Banque d'idées</button>
+  <button data-v="visibility">Visibilité locale</button>
+  <button data-v="calendar">Calendrier de contenu</button>
+  <button data-v="commerce">Commercialisation</button>
+  <button data-v="ai">Assistante IA</button>
+  <button data-v="glossary">Métriques & glossaire</button>
+</nav>
+<main>
+
+<!-- ============ AUJOURD'HUI ============ -->
+<section class="view active" id="v-today">
+  <div class="hello">
+    <div><h1 id="greet">Bonjour Marie</h1><div class="date" id="today-date"></div></div>
+    <div class="card stat" style="min-width:150px"><span class="big-num" id="today-count">0/8</span><span>actions du jour</span></div>
+  </div>
+  <div class="card rose" style="margin:18px 0 26px">
+    <span class="tag">Affirmation du jour</span>
+    <div class="affirm" id="affirm"></div>
+  </div>
+  <div class="row" style="justify-content:space-between">
+    <h2 style="margin:0">Ton plan du jour, Marie</h2>
+    <button class="ghost" onclick="shuffleToday()">Nouvelles cartes</button>
+  </div>
+  <p class="small">Une carte par section. Coche ce qui est fait ; tout se remet à zéro demain.</p>
+  <div class="two" id="today-cards"></div>
+</section>
+
+<!-- ============ COMMENCER ============ -->
+<section class="view" id="v-start">
+  <h1>Commencer ici</h1>
+  <p class="lede">Le marketing d'un salon n'a qu'un seul travail : rendre le salon facile à trouver, facile à faire confiance et facile à réserver, puis faire revenir les clientes et les faire parler. Tout ce guide s'appuie sur ces cinq moments.</p>
+  <div class="funnel">
+    <div><b>Trouver</b><span>Google, Instagram, TikTok, bouche-à-oreille</span></div>
+    <div><b>Faire confiance</b><span>Avis, avant/après, marque cohérente</span></div>
+    <div><b>Réserver</b><span>Un seul lien de réservation, partout</span></div>
+    <div><b>Revenir</b><span>Re-réservation, fidélité, rappels</span></div>
+    <div><b>Recommander</b><span>Parrainage, contenu client, moments à partager</span></div>
+  </div>
+
+  <h2>Les 20 % qui donnent 80 % des résultats</h2>
+  <ol>
+    <li><b>Fiche Google Business Profile complète et notée.</b> La plupart des gens cherchent « salon d'ongles près de moi » avant même d'ouvrir Instagram. Photos, horaires, services avec prix, lien de réservation et un flux régulier d'avis 5 étoiles.</li>
+    <li><b>Instagram comme portfolio, TikTok comme moteur de découverte.</b> Les Reels et vidéos courtes de transformations donnent la portée ; la grille et les Stories à la une concluent la vente.</li>
+    <li><b>Un seul lien de réservation.</b> Bio, Google, réponse automatique WhatsApp, chaque légende. Si réserver prend plus de deux clics, tu perds la cliente.</li>
+    <li><b>Une habitude de re-réservation.</b> Demande au fauteuil, envoie un rappel à la semaine 4 à 6. Fidéliser coûte toujours moins cher qu'acquérir.</li>
+    <li><b>Des avis en système.</b> Demande à chaque cliente heureuse le jour même, avec un lien direct. Vise 3 à 5 nouveaux avis par semaine.</li>
+  </ol>
+
+  <h2>Tes 90 premiers jours</h2>
+  <div class="three">
+    <div class="card"><h3>Jours 1 à 30 : Fondations</h3>
+      <ul><li>Audit : ce qui existe aujourd'hui (comptes, avis, photos, prix, concurrents)</li><li>Remplir le Kit de marque</li><li>Revendiquer et compléter Google Business Profile</li><li>Mettre en place le lien de réservation et WhatsApp Business</li><li>Constituer une banque de 30+ photos et 15+ clips</li><li>Définir 4 piliers de contenu</li></ul></div>
+    <div class="card"><h3>Jours 31 à 60 : Rythme</h3>
+      <ul><li>Publier selon le calendrier</li><li>Lancer le système de demande d'avis</li><li>Première offre : un service « essayez-nous » à faible risque</li><li>S'associer à 2 commerces locaux</li><li>Démarrer une liste clientes (nom, téléphone, service, dernière visite)</li></ul></div>
+    <div class="card"><h3>Jours 61 à 90 : Croissance</h3>
+      <ul><li>Programme de parrainage</li><li>Premier petit test payant (Instagram/Facebook, rayon 5 km)</li><li>Visite d'une micro-influenceuse ou créatrice</li><li>Revoir les métriques, couper ce qui ne marche pas, doubler ce qui marche</li></ul></div>
+  </div>
+
+  <h2>Comment utiliser ce guide</h2>
+  <ul>
+    <li><b>Aujourd'hui</b> chaque matin : la date, une affirmation, et une action par section.</li>
+    <li><b>Cadres stratégiques</b> pour penser clairement ou présenter un plan.</li>
+    <li><b>Kit de marque</b> pour fixer la voix et le style avant de publier quoi que ce soit.</li>
+    <li><b>Réseaux sociaux</b> pour savoir quoi publier, où, et à quelle fréquence.</li>
+    <li><b>Banque d'idées</b> quand tu bloques. Tire une carte.</li>
+    <li><b>Visibilité locale</b> comme liste de tâches pour être trouvée dans le quartier.</li>
+    <li><b>Calendrier de contenu</b> pour générer un mois en un clic.</li>
+    <li><b>Commercialisation</b> pour transformer les compétences en offres qui se vendent.</li>
+    <li><b>Assistante IA</b> pour rédiger légendes, offres et campagnes à partir de ton kit de marque.</li>
+  </ul>
+  <div class="note">Les fiches et listes de cette application sont enregistrées dans ton navigateur. Copie ce qui est important dans tes propres notes ou ton Drive.</div>
+</section>
+
+<!-- ============ CADRES ============ -->
+<section class="view" id="v-frameworks">
+  <h1>Cadres stratégiques</h1>
+  <p class="lede">Des méthodes connues, traduites pour un salon. Utilise-les pour structurer ta réflexion et rendre ton plan lisible.</p>
+
+  <details open><summary>SOSTAC (la structure de ton plan global)</summary>
+    <p>La façon la plus propre d'écrire un plan marketing. Six titres :</p>
+    <div class="tbl"><table><tr><th>Étape</th><th>Question</th><th>Exemple salon</th></tr>
+    <tr><td>Situation</td><td>Où en sommes-nous ?</td><td>3,9 étoiles sur Google, 400 abonnés IG, pas de TikTok, 60 % de clientes sans rendez-vous, plein le ven/sam, vide le mar/mer</td></tr>
+    <tr><td>Objectifs</td><td>Où voulons-nous aller ?</td><td>+40 nouvelles clientes/mois, 4,6 étoiles, remplir mar/mer à 70 % d'ici décembre</td></tr>
+    <tr><td>Stratégie</td><td>Comment y arriver, en gros ?</td><td>Dominer la recherche locale, devenir le salon « transformation » sur Reels/TikTok, fidéliser par un programme</td></tr>
+    <tr><td>Tactiques</td><td>Concrètement, quoi ?</td><td>Système d'avis, 4 Reels/semaine, remise du mardi, cartes de parrainage</td></tr>
+    <tr><td>Action</td><td>Qui fait quoi, quand ?</td><td>Tournage hebdo le lundi, Marie publie, l'accueil demande les avis</td></tr>
+    <tr><td>Contrôle</td><td>Comment savoir si ça marche ?</td><td>Mensuel : nouvelles clientes, réservations via le lien, avis, croissance des abonnés, chiffre par jour</td></tr></table></div>
+  </details>
+
+  <details><summary>SWOT (analyse de situation)</summary>
+    <p>Forces, Faiblesses, Opportunités, Menaces. Fais-le avec une coiffeuse senior en 30 minutes. Sois directe : une faiblesse que tu ne nommes pas apparaîtra dans un avis.</p>
+    <div class="two"><div class="card"><h4>Interne</h4><label>Forces</label><textarea data-save="swot-s" placeholder="ex. tresseuses expertes, salle spa calme, stationnement"></textarea><label>Faiblesses</label><textarea data-save="swot-w" placeholder="ex. pas de réservation en ligne, photos irrégulières"></textarea></div>
+    <div class="card"><h4>Externe</h4><label>Opportunités</label><textarea data-save="swot-o" placeholder="ex. nouveaux condos à côté, saison des mariées, aucun concurrent sur TikTok"></textarea><label>Menaces</label><textarea data-save="swot-t" placeholder="ex. ouverture d'une chaîne, hausse du prix des produits"></textarea></div></div>
+  </details>
+
+  <details><summary>STP : Segmentation, Ciblage, Positionnement</summary>
+    <p><b>Segmente</b> le marché, <b>cible</b> les 2 ou 3 groupes qui valent la peine, <b>positionne</b> le salon dans leur esprit.</p>
+    <ul><li>Segments typiques : professionnelles pressées (rapidité, soirées), mariées et événements (forfaits), clientes aux cheveux texturés (soin spécialisé, coiffures protectrices), ados et étudiantes (prix, tendances), hommes (soins, rapide), adeptes du bien-être (spa, soins du visage, premium), habituées 45+ (relation, constance).</li>
+    <li>Modèle de positionnement : <i>Pour [cible], [Salon] est le [catégorie] qui [bénéfice clé] parce que [raison d'y croire].</i></li></ul>
+    <label>Ton énoncé de positionnement</label><textarea data-save="stp" placeholder="Pour les clientes aux cheveux texturés de Mississauga, Glow est le salon qui traite la coiffure protectrice comme un soin, pas seulement un style, parce que chaque coiffeuse est formée à la santé du cuir chevelu."></textarea>
+  </details>
+
+  <details><summary>Persona cliente</summary>
+    <p>Écris 2 ou 3 personas courts. Un paragraphe chacun : prénom, âge, métier, pourquoi elle vient, ce qu'elle craint (dommages, surfacturation, silence gênant), où elle scrolle, ce qui la fait réserver.</p>
+    <label>Persona 1</label><textarea data-save="persona1"></textarea><label>Persona 2</label><textarea data-save="persona2"></textarea>
+  </details>
+
+  <details><summary>Les 7 P du marketing des services</summary>
+    <div class="tbl"><table><tr><th>P</th><th>Question</th></tr>
+    <tr><td>Produit</td><td>Quels services sont signature ? Lesquels sont de remplissage ? Des forfaits ou combos ?</td></tr>
+    <tr><td>Prix</td><td>Ancrage (bon / mieux / meilleur), tarifs heures creuses, prix des options, menu transparent en ligne</td></tr>
+    <tr><td>Place</td><td>Emplacement, stationnement, transport, réservation en ligne, WhatsApp, service à domicile ?</td></tr>
+    <tr><td>Promotion</td><td>Réseaux, Google, parrainage, partenariats, courriel/SMS, événements locaux</td></tr>
+    <tr><td>Personnes</td><td>L'équipe comme marque : badges, portraits IG, formation à demander des avis</td></tr>
+    <tr><td>Processus</td><td>De la réservation à l'au revoir : consultation, timing, carte de soins, demande de re-réservation</td></tr>
+    <tr><td>Preuve physique</td><td>Intérieur, odeur, musique, propreté, emballage, le coin selfie</td></tr></table></div>
+  </details>
+
+  <details><summary>AIDA (pour un post, une pub ou un flyer)</summary>
+    <p>Attention (une accroche ou une transformation), Intérêt (ce qui s'est passé, comment), Désir (ce qu'elle ressentira, preuve sociale), Action (lien de réservation, offre, échéance). Si un post n'a pas la dernière étape, c'est un journal intime, pas du marketing.</p>
+  </details>
+
+  <details><summary>RACE (planification de l'entonnoir numérique)</summary>
+    <p>Reach (portée), Act (agir), Convert (convertir), Engage (fidéliser). Donne un rôle à chaque canal : TikTok = portée, grille Instagram + Google = agir (elles te vérifient), lien de réservation + offre = convertir, WhatsApp/SMS/fidélité = fidéliser.</p>
+  </details>
+
+  <details><summary>AARRR, les « métriques pirates » (penser fidélisation d'abord)</summary>
+    <p>Acquisition, Activation (la première visite s'est bien passée), Rétention (revenue sous 8 semaines), Recommandation, Revenu. Les salons vivent ou meurent par la rétention et la recommandation. Suis le « % de premières visites qui re-réservent » comme étoile polaire.</p>
+  </details>
+
+  <details><summary>Archétypes de marque (pour la voix et le style)</summary>
+    <p>Choisis un principal, un secondaire. Correspondances courantes pour un salon : <b>Soignante</b> (bienveillance, bonnes mains), <b>Amoureuse</b> (sensuel, indulgent, spa), <b>Magicienne</b> (transformation), <b>Créatrice</b> (art, éditorial), <b>Voisine</b> (quartier, amicale), <b>Souveraine</b> (premium, exclusif), <b>Bouffonne</b> (drôle, ludique, Gen Z). L'archétype décide de tes couleurs, tes légendes, et même de la musique dans le salon.</p>
+  </details>
+
+  <details><summary>Piliers de contenu (3 à 5 thèmes récurrents)</summary>
+    <p>Un pilier est un panier dans lequel tu as toujours quelque chose à dire. Jeu recommandé : <b>Transformations</b> (preuve), <b>Éducation</b> (conseils, mythes, soins), <b>Derrière le fauteuil</b> (équipe, coulisses, journée type), <b>Amour client</b> (avis, contenu client, réactions), <b>Offres & nouvelles</b> (promos, disponibilités, nouveaux services). Ratio environ 40 / 20 / 20 / 10 / 10.</p>
+  </details>
+
+  <details><summary>Objectifs SMART</summary>
+    <p>Spécifique, Mesurable, Atteignable, Réaliste, Temporel. Mauvais : « grandir sur Instagram ». Bon : « Atteindre 1 500 abonnées et 25 clics sur le lien de réservation par semaine d'ici le 30 novembre grâce à 4 Reels et 5 Stories par semaine. »</p>
+  </details>
+
+  <details><summary>Parcours cliente</summary>
+    <p>Colonnes : Découvrir, Considérer, Réserver, Arriver, Service, Partir, Revenir. Lignes : ce qu'elle fait, ce qu'elle ressent, où ça peut mal tourner, ce qu'on peut faire. La colonne « Partir » est celle où se gagnent les avis, les re-réservations et les recommandations.</p>
+  </details>
+</section>
+
+<!-- ============ KIT DE MARQUE ============ -->
+<section class="view" id="v-brand">
+  <h1>Kit de marque</h1>
+  <p class="lede">Remplis ceci une fois. Tout le reste (légendes, offres, l'assistante IA) s'en sert. Une marque est une promesse tenue avec constance, pas un logo.</p>
+  <div class="two">
+    <div class="card">
+      <label>Nom du salon</label><input data-save="b-name" placeholder="ex. Glow Beauty Studio">
+      <label>Ville / quartier</label><input data-save="b-city" placeholder="ex. Mississauga, secteur Square One">
+      <label>Services</label><input data-save="b-services" placeholder="Coiffure, tresses, locs, soins du visage, ongles, épilation, massage">
+      <label>Slogan (moins de 8 mots)</label><input data-save="b-tagline" placeholder="ex. Repars comme toi-même, un bon jour.">
+      <label>Archétype principal</label>
+      <select data-save="b-arch"><option>Soignante</option><option>Amoureuse</option><option>Magicienne</option><option>Créatrice</option><option>Voisine</option><option>Souveraine</option><option>Bouffonne</option></select>
+      <label>La voix en trois mots</label><input data-save="b-voice" placeholder="chaleureuse, confiante, sans chichi">
+    </div>
+    <div class="card">
+      <label>Pour qui (clientes cibles)</label><textarea data-save="b-target" placeholder="Femmes de 25 à 45 ans qui veulent un soin expert pour cheveux texturés et une heure calme pour elles"></textarea>
+      <label>Ce qui nous rend différentes (des preuves, pas des adjectifs)</label><textarea data-save="b-diff" placeholder="10 ans en coiffure protectrice, consultation gratuite, réservation le jour même, approche cuir chevelu d'abord"></textarea>
+      <label>Mots qu'on utilise / mots qu'on évite</label><textarea data-save="b-words" placeholder="Utiliser : soin, rituel, toi. Éviter : pas cher, réparer, les filles."></textarea>
+      <label>Couleurs et style</label><input data-save="b-colours" placeholder="Rose poudré, chocolat, lumière naturelle, pas de filtres lourds">
+    </div>
+  </div>
+  <div class="row"><button onclick="saveAll()">Enregistrer le kit</button><span class="small" id="b-status"></span></div>
+
+  <h2>Liste de contrôle de la marque</h2>
+  <div class="card"><div class="check" data-checklist="brand">
+    <label><input type="checkbox">Nom, logo et identifiant identiques sur Google, Instagram, TikTok, Facebook, WhatsApp</label>
+    <label><input type="checkbox">Une photo de profil (logo) et un style de couverture partout</label>
+    <label><input type="checkbox">Formule de bio : qui on sert + ce qu'on fait + où + lien de réservation</label>
+    <label><input type="checkbox">Deux couleurs de marque et un accent, sur chaque visuel</label>
+    <label><input type="checkbox">Une police titre, une police texte, enregistrées dans le kit Canva</label>
+    <label><input type="checkbox">Règle photo (lumière, fond, angle) écrite et partagée avec l'équipe</label>
+    <label><input type="checkbox">Menu de prix conçu, à jour et publié en ligne</label>
+    <label><input type="checkbox">Bios et photos de l'équipe prêtes (les personnes sont la marque)</label>
+    <label><input type="checkbox">Service signature nommé et packagé (ce pour quoi on est connues)</label>
+    <label><input type="checkbox">Coin selfie dans le salon avec bonne lumière et logo ou nom visible</label>
+    <label><input type="checkbox">Carte de soins / carte merci avec identifiant et lien d'avis</label>
+  </div>
+  <div class="progress"><i></i></div></div>
+
+  <h2>Exemples de voix par archétype</h2>
+  <div class="tbl"><table><tr><th>Archétype</th><th>Ça sonne comme</th></tr>
+  <tr><td>Soignante</td><td>« Ton cuir chevelu va te dire merci. Réserve une consultation, sans pression, juste des réponses. »</td></tr>
+  <tr><td>Amoureuse</td><td>« Quatre-vingt-dix minutes. Huile chaude, lumière tamisée, nulle part où aller. »</td></tr>
+  <tr><td>Magicienne</td><td>« Entrée fatiguée. Sortie en personnage principal. »</td></tr>
+  <tr><td>Voisine</td><td>« Viens comme tu es. On a du thé et un fauteuil à ton nom. »</td></tr>
+  <tr><td>Bouffonne</td><td>« POV : tu as dit « juste les pointes » et on savait toutes les deux que tu mentais. »</td></tr></table></div>
+</section>
+
+<!-- ============ RÉSEAUX ============ -->
+<section class="view" id="v-social">
+  <h1>Réseaux sociaux</h1>
+  <p class="lede">La beauté est la catégorie la plus visuelle des réseaux. La vidéo de vraies transformations bat tout le reste. Le système ci-dessous est conçu pour être tenable par une seule personne.</p>
+
+  <h2>Rôle de chaque plateforme</h2>
+  <div class="tbl"><table><tr><th>Plateforme</th><th>Rôle</th><th>Quoi publier</th><th>Cadence</th></tr>
+  <tr><td>Instagram</td><td>Portfolio + réservation. Là où les gens te vérifient avant de réserver.</td><td>Reels (transformations), carrousels (conseils, FAQ, prix), Stories quotidiennes (disponibilités, coulisses, sondages), Stories à la une (Services, Prix, Avis, Avant/Après)</td><td>3 à 4 Reels/sem, 1 à 2 carrousels/sem, Stories chaque jour</td></tr>
+  <tr><td>TikTok</td><td>Découverte. Grande portée organique, favorise le contenu local, construit la confiance vite.</td><td>Les mêmes Reels remontés avec son tendance, formats POV, « regarde-moi faire X », réactions clientes, mythes démontés</td><td>3 à 5/sem (republie tes Reels)</td></tr>
+  <tr><td>Google Business Profile</td><td>Conversion. La plupart des recherches locales finissent ici.</td><td>Photo hebdo, offre mensuelle, chaque service listé avec prix, réponse à chaque avis</td><td>Hebdomadaire</td></tr>
+  <tr><td>Facebook</td><td>Public local plus âgé (35+), groupes de quartier, publicités payantes et reciblage</td><td>Repartage, offres, rejoindre les groupes locaux</td><td>2 à 3/sem en repartage</td></tr>
+  <tr><td>WhatsApp Business</td><td>Réservation et fidélisation</td><td>Catalogue, réponses rapides, listes de diffusion pour offres et rappels (avec consentement)</td><td>En continu</td></tr>
+  <tr><td>Pinterest</td><td>Inspiration longue traîne, mariées, nail art</td><td>Épingle tes plus beaux résultats avec nom du service + ville</td><td>Optionnel, par lot mensuel</td></tr></table></div>
+
+  <h2>Le système hebdo (environ 4 heures)</h2>
+  <ol>
+    <li><b>Jour de tournage (lundi, 60 min) :</b> filme 5 à 8 clips bruts pendant de vrais rendez-vous (avec consentement). Avant, pendant, révélation, réaction. Vertical, lumière naturelle, téléphone sur petit trépied.</li>
+    <li><b>Montage par lot (90 min) :</b> découpe en 4 Reels dans CapCut. Accroche à l'écran dans les 2 premières secondes, sous-titres activés, son tendance ou calme.</li>
+    <li><b>Programmation (30 min) :</b> Meta Business Suite ou Later. Légendes en AIDA. Lien de réservation dans chacune.</li>
+    <li><b>Quotidien (10 min) :</b> 2 à 3 Stories, réponse à chaque commentaire et message dans l'heure, interaction avec 10 comptes locaux.</li>
+    <li><b>Vendredi (20 min) :</b> regarde les statistiques, note le meilleur post, prévois des variantes pour la semaine suivante.</li>
+  </ol>
+
+  <h2>Formules d'accroche (2 premières secondes)</h2>
+  <div class="card"><ul>
+    <li>« Elle est arrivée avec ___ et repartie avec ___ »</li>
+    <li>« POV : c'est ta première fois chez [salon] »</li>
+    <li>« Arrête de faire ça à tes [cheveux/peau/ongles] »</li>
+    <li>« Regarde ce [service] du début à la fin en 15 secondes »</li>
+    <li>« Voilà pourquoi ton [gel/tes cils/ta couleur] ne tient pas »</li>
+    <li>« Je note les photos avant de mes clientes (avec amour) »</li>
+    <li>« Ce que je ne ferais jamais en tant que [coiffeuse/esthéticienne] »</li>
+    <li>« [Service] sur [type de cheveux / de peau] : la version honnête »</li>
+    <li>« On avait une heure. Voilà ce qui s'est passé. »</li>
+    <li>« Ce que 80 $ t'offre chez [salon] »</li>
+  </ul></div>
+
+  <h2>Structure d'une légende</h2>
+  <p>Ligne 1 : l'accroche ou le résultat. Lignes 2 à 3 : ce qui a été fait, pour qui, en combien de temps. Ligne 4 : un conseil ou une émotion. Dernière ligne : appel à l'action avec le lien (« Réserve via le lien en bio, les mardis sont ouverts »). 5 à 10 hashtags : 3 locaux (#SalonMississauga #CoiffureMississauga #PeelRegion), 3 services (#TressesKnotless #GelX #Hydrafacial), 2 niche (#Cheveux4c #MaquillageMarieeToronto).</p>
+
+  <h2>Règles qui te protègent</h2>
+  <ul>
+    <li>Consentement écrit ou enregistré avant de filmer une cliente. Une ligne de consentement simple sur la fiche d'accueil.</li>
+    <li>Ne publie jamais le visage d'une cliente sans un oui clair. Mains, cheveux et ongles sont plus sûrs par défaut.</li>
+    <li>Réponds à chaque avis, surtout les mauvais, calmement et sous 24 heures.</li>
+    <li>N'achète pas d'abonnés. Local, engagé et petit bat gros et mort.</li>
+    <li>Possède ta liste clientes. Les abonnés peuvent disparaître ; les numéros de téléphone, non.</li>
+  </ul>
+
+  <h2>Publicité payante, quand tu es prête</h2>
+  <p>Commence avec 5 à 10 $/jour sur Meta, rayon 5 à 8 km, objectif « Prospects » ou « Trafic » vers la page de réservation, création = ton meilleur Reel organique, offre = un avantage première visite. Lance deux créations, coupe la perdante après 7 jours. Sur TikTok, « Promouvoir » un Reel qui a déjà marché en organique est le test le moins cher.</p>
+</section>
+
+<!-- ============ IDÉES ============ -->
+<section class="view" id="v-ideas">
+  <h1>Banque d'idées</h1>
+  <p class="lede">Bloquée ? Filtre ou tire une carte. Chaque idée est étiquetée par objectif, service, canal et coût.</p>
+  <div class="draw" id="drawCard"><h3>Tire une idée</h3><p>Appuie sur le bouton et une idée au hasard apparaît ici, filtrée selon tes sélections.</p></div>
+  <div class="filters">
+    <button class="rose" onclick="drawIdea()">Tirer une carte</button>
+    <select id="f-goal"><option value="">Tout objectif</option><option>Notoriété</option><option>Réservations</option><option>Fidélisation</option><option>Parrainage</option><option>Avis</option></select>
+    <select id="f-service"><option value="">Tout service</option><option>Coiffure</option><option>Peau</option><option>Ongles</option><option>Spa</option><option>Tous</option></select>
+    <select id="f-channel"><option value="">Tout canal</option><option>Instagram</option><option>TikTok</option><option>Google</option><option>En salon</option><option>WhatsApp</option><option>Local</option><option>Courriel/SMS</option></select>
+    <select id="f-cost"><option value="">Tout coût</option><option>Gratuit</option><option>Faible</option><option>Moyen</option></select>
+    <input id="f-text" placeholder="Chercher une idée" style="width:180px">
+  </div>
+  <div class="small" id="ideaCount"></div>
+  <div id="ideaList"></div>
+</section>
+
+<!-- ============ VISIBILITÉ ============ -->
+<section class="view" id="v-visibility">
+  <h1>Visibilité locale</h1>
+  <p class="lede">La visibilité locale, c'est surtout du travail de mise en place peu glamour. Fais-le une fois, entretiens-le chaque semaine, et ça bat n'importe quel post viral.</p>
+
+  <div class="card"><h3>Google Business Profile</h3>
+  <div class="check" data-checklist="gbp">
+    <label><input type="checkbox">Fiche revendiquée et vérifiée, bonne catégorie (Salon de beauté + secondaires : Salon de coiffure, Salon d'ongles, Spa, Soins du visage)</label>
+    <label><input type="checkbox">Nom, adresse, téléphone identiques partout en ligne (cohérence NAP)</label>
+    <label><input type="checkbox">Horaires, horaires de fêtes, et attributs « entreprise détenue par une femme / une personne noire » si applicable</label>
+    <label><input type="checkbox">Chaque service listé avec description et prix</label>
+    <label><input type="checkbox">Lien de réservation connecté (Fresha, Booksy, Square, Setmore, ou ton site)</label>
+    <label><input type="checkbox">20+ photos : extérieur, intérieur, équipe, 10+ résultats ; une de plus chaque semaine</label>
+    <label><input type="checkbox">Section Questions-réponses amorcée avec 5 questions courantes et leurs réponses</label>
+    <label><input type="checkbox">Lien d'avis raccourci et enregistré (share.google ou code QR à l'accueil)</label>
+    <label><input type="checkbox">Réponse à 100 % des avis sous 48 heures</label>
+    <label><input type="checkbox">Publication « Offre » ou « Nouveauté » mensuelle</label>
+  </div>
+  <div class="progress"><i></i></div></div>
+
+  <div class="card" style="margin-top:16px"><h3>Site web et réservation</h3>
+  <div class="check" data-checklist="web">
+    <label><input type="checkbox">Site une page, mobile d'abord (ou un profil solide sur la plateforme de réservation) avec services, prix, photos, carte, bouton réserver visible sans défiler</label>
+    <label><input type="checkbox">Titre de page et titres incluent service + ville (« Salon de tresses et cheveux naturels à Mississauga »)</label>
+    <label><input type="checkbox">Une page ou section par grand service (coiffure, peau, ongles, spa) pour la recherche</label>
+    <label><input type="checkbox">Avis intégrés sur le site</label>
+    <label><input type="checkbox">Bouton WhatsApp « cliquer pour discuter »</label>
+    <label><input type="checkbox">Présence sur Yelp, marketplace Fresha/Booksy, Apple Plans, Bing Places, Facebook</label>
+  </div>
+  <div class="progress"><i></i></div></div>
+
+  <div class="card" style="margin-top:16px"><h3>Machine à avis</h3>
+  <div class="check" data-checklist="rev">
+    <label><input type="checkbox">Script pour l'équipe : « Si tu as adoré, un avis Google nous aide plus que tout. Voici le lien. »</label>
+    <label><input type="checkbox">Code QR à l'accueil et sur le miroir</label>
+    <label><input type="checkbox">Message de suivi le jour même avec le lien d'avis (WhatsApp/SMS)</label>
+    <label><input type="checkbox">Cible fixée : 3 à 5 nouveaux avis par semaine</label>
+    <label><input type="checkbox">Meilleurs avis transformés en visuels Instagram chaque mois</label>
+  </div>
+  <div class="progress"><i></i></div></div>
+
+  <div class="card" style="margin-top:16px"><h3>Local et hors ligne</h3>
+  <div class="check" data-checklist="local">
+    <label><input type="checkbox">Partenariats : boutiques de mariée, photographes, gyms, boutiques, cafés (promotion croisée ou cartes de parrainage)</label>
+    <label><input type="checkbox">Communauté : église, associations culturelles, groupes étudiants, organismes pour nouveaux arrivants</label>
+    <label><input type="checkbox">Vitrine et enseigne avec identifiant + QR pour réserver</label>
+    <label><input type="checkbox">Flyers dans les condos et babillards du quartier (avec offre première visite)</label>
+    <label><input type="checkbox">Événements locaux : bar à tresses éphémère, démo mini-soin, stand au marché</label>
+    <label><input type="checkbox">Presse locale ou blogues communautaires approchés avec une histoire (pas une pub)</label>
+  </div>
+  <div class="progress"><i></i></div></div>
+</section>
+
+<!-- ============ CALENDRIER ============ -->
+<section class="view" id="v-calendar">
+  <h1>Calendrier de contenu</h1>
+  <p class="lede">Génère un plan de publication sur 4 semaines à partir de tes piliers. Regénère pour de nouvelles variantes, puis copie-le dans ton outil de programmation.</p>
+  <div class="card"><div class="row">
+    <label style="margin:0">Posts par semaine</label><select id="c-freq"><option>3</option><option selected>4</option><option>5</option><option>6</option></select>
+    <label style="margin:0">Service mis en avant ce mois-ci</label><select id="c-focus"><option>Mixte</option><option>Coiffure</option><option>Peau</option><option>Ongles</option><option>Spa</option></select>
+    <button onclick="genCalendar()">Générer le calendrier</button>
+    <button class="ghost" onclick="copyCalendar()">Copier en texte</button>
+  </div></div>
+  <div id="calendar"></div>
+  <h3>Accroches saisonnières (Canada)</h3>
+  <div class="tbl"><table><tr><th>Quand</th><th>Angle</th></tr>
+  <tr><td>Jan</td><td>Nouvelle année, soins du visage saison sèche, coiffures protectrices pour l'hiver</td></tr>
+  <tr><td>Fév</td><td>Spa en couple Saint-Valentin, Mois de l'histoire des Noirs : portraits et histoires</td></tr>
+  <tr><td>Mars à avril</td><td>Rafraîchissement printanier, ouverture des réservations mariages, glam Ramadan/Aïd</td></tr>
+  <tr><td>Mai</td><td>Forfaits fête des Mères, bal des finissants</td></tr>
+  <tr><td>Juin à août</td><td>Cheveux d'été (tresses, locs, couleur), saison des pédicures, looks Caribana/Carnaval, pic des mariages</td></tr>
+  <tr><td>Sept</td><td>Rentrée, retour à la routine, offres étudiantes</td></tr>
+  <tr><td>Oct</td><td>Action de grâce, ongles Halloween, couleurs d'automne</td></tr>
+  <tr><td>Nov à déc</td><td>Cartes-cadeaux Vendredi fou, glam des fêtes, Noël/Nouvel An, rétrospective de l'année</td></tr></table></div>
+</section>
+
+<!-- ============ COMMERCIALISATION ============ -->
+<section class="view" id="v-commerce">
+  <h1>Commercialisation</h1>
+  <p class="lede">Commercialiser, c'est transformer tes compétences et ton espace en offres qui se vendent, se répètent et se recommandent. Une bonne offre se comprend en une phrase à l'accueil.</p>
+
+  <h2>Les sept flux de revenus d'un salon</h2>
+  <div class="three">
+    <div class="card stream"><h3>Abonnements</h3><span class="price">Payé d'avance, 10 à 15 % moins cher</span><p>Club brushing, club soin du visage ou club manucure mensuel. Réservation prioritaire. Revenu prévisible, clientes qui reviennent sans y penser.</p><span class="tag">Fidélisation</span><span class="tag sage">Trésorerie</span></div>
+    <div class="card stream"><h3>Forfaits</h3><span class="price">2 à 3 services, un prix</span><p>Mariée (essai + jour J), « Journée Reset » (soin + manucure + massage), combo étudiante. On vend une sensation, pas une liste.</p><span class="tag">Panier moyen</span></div>
+    <div class="card stream"><h3>Cartes-cadeaux</h3><span class="price">Nov, fév, mai</span><p>Version numérique en vente en ligne. Pousse 3 semaines avant chaque fête. Une carte offerte = une nouvelle cliente qui entre.</p><span class="tag">Acquisition</span><span class="tag sage">Trésorerie</span></div>
+    <div class="card stream"><h3>Produits en boutique</h3><span class="price">Marge 40 à 50 %</span><p>Les 3 produits que l'équipe utilise vraiment, sur une étagère près du miroir, avec une étiquette « ce qu'on a utilisé » dans chaque post.</p><span class="tag">Panier moyen</span></div>
+    <div class="card stream"><h3>Ateliers</h3><span class="price">Petites classes payantes</span><p>« Entretenir ses tresses à la maison », « Peau 101 ». Les participantes deviennent clientes et le cours produit du contenu.</p><span class="tag">Notoriété</span><span class="tag sage">Contenu</span></div>
+    <div class="card stream"><h3>Tarifs heures creuses</h3><span class="price">Mar/mer, matinées</span><p>Un rabais visible seulement sur les créneaux vides. Promu le dimanche et le lundi pour créer la rareté.</p><span class="tag">Remplissage</span></div>
+    <div class="card stream"><h3>Location de fauteuil</h3><span class="price">Journée artiste invitée</span><p>Une technicienne cils ou ongles une fois par mois, revenus partagés. Nouveau public, aucun coût fixe.</p><span class="tag">Partenariat</span></div>
+  </div>
+
+  <h2>Échelle de prix (bon / mieux / meilleur)</h2>
+  <p>Montrer une option premium rend l'option du milieu raisonnable. La plupart des clientes choisissent le milieu. Nomme chaque niveau comme une expérience, pas comme une durée.</p>
+  <div class="ladder">
+    <div class="card"><h3>Essentiel</h3><div class="big-num" id="l1">60 $</div><p class="small">Le service seul, bien fait.</p></div>
+    <div class="card mid"><h3>Signature</h3><div class="big-num" id="l2">95 $</div><p class="small">Le service + un soin + une boisson. Celui qu'on met en avant.</p></div>
+    <div class="card"><h3>Rituel</h3><div class="big-num" id="l3">150 $</div><p class="small">Tout le Signature + massage + produit à emporter.</p></div>
+  </div>
+  <div class="card"><div class="row"><label style="margin:0">Prix de base</label><input type="number" id="ladder-base" value="60" min="10" step="5" oninput="ladder()"></div><p class="small">Règle simple : Signature ≈ 1,6 × base, Rituel ≈ 2,5 × base. Ajuste selon tes coûts réels.</p></div>
+
+  <h2>Calculatrice de valeur cliente</h2>
+  <div class="card">
+    <div class="three">
+      <div><label>Dépense moyenne par visite ($)</label><input type="number" id="ltv-spend" value="90" oninput="ltv()"></div>
+      <div><label>Visites par an</label><input type="number" id="ltv-visits" value="8" oninput="ltv()"></div>
+      <div><label>Années de fidélité</label><input type="number" id="ltv-years" value="3" oninput="ltv()"></div>
+    </div>
+    <div class="calc-out" id="ltv-out"></div>
+    <p class="small">La valeur à vie justifie ce que tu peux dépenser pour gagner une cliente : une remise première visite de 20 $ est minuscule face à ce chiffre.</p>
+  </div>
+
+  <h2>Concevoir une offre en 6 lignes</h2>
+  <div class="card">
+    <label>Nom de l'offre</label><input data-save="off-name" placeholder="ex. Mardi Douceur">
+    <label>Mécanique (une phrase)</label><input data-save="off-mech" placeholder="ex. 15 % sur tout service réservé un mardi avant 14 h">
+    <label>Pour qui</label><input data-save="off-who" placeholder="ex. étudiantes et mamans en congé">
+    <label>Quand</label><input data-save="off-when" placeholder="ex. septembre à novembre, promu dimanche et lundi">
+    <label>Canaux</label><input data-save="off-chan" placeholder="ex. Story Instagram, offre Google, liste WhatsApp">
+    <label>Risque à surveiller</label><input data-save="off-risk" placeholder="ex. habituées du samedi qui migrent vers le mardi">
+    <div class="row"><button onclick="saveAll()">Enregistrer l'offre</button></div>
+  </div>
+
+  <h2>Liste de contrôle commercialisation</h2>
+  <div class="card"><div class="check" data-checklist="com">
+    <label><input type="checkbox">Service signature nommé, avec un prix et une photo dédiée</label>
+    <label><input type="checkbox">Menu en trois niveaux (Essentiel / Signature / Rituel) affiché en ligne et en salon</label>
+    <label><input type="checkbox">Au moins un forfait vendu comme une expérience</label>
+    <label><input type="checkbox">Carte-cadeau numérique disponible et testée</label>
+    <label><input type="checkbox">Trois produits en vente près du miroir, avec étiquettes « choix de l'équipe »</label>
+    <label><input type="checkbox">Un abonnement mensuel proposé au fauteuil</label>
+    <label><input type="checkbox">Tarif heures creuses activé sur les créneaux vides</label>
+    <label><input type="checkbox">Script d'ajout de service (« on ajoute un soin du cuir chevelu, 15 minutes ? »)</label>
+    <label><input type="checkbox">Un atelier planifié ce trimestre</label>
+    <label><input type="checkbox">Chiffre par jour de la semaine suivi chaque mois</label>
+  </div>
+  <div class="progress"><i></i></div></div>
+
+  <h2>Scripts de vente douce au fauteuil</h2>
+  <div class="two">
+    <div class="card"><h4>Ajout de service</h4><p>« Pendant que la couleur pose, on peut ajouter un soin du cuir chevelu. Quinze minutes, ça évite les démangeaisons de la semaine prochaine. Je l'ajoute ? »</p></div>
+    <div class="card"><h4>Re-réservation</h4><p>« Je te garde ta place dans six semaines, même jour, même heure ? Tu recevras un rappel la veille. »</p></div>
+    <div class="card"><h4>Produit</h4><p>« C'est ce que je viens d'utiliser. Si tu veux garder ce résultat jusqu'à la prochaine visite, c'est celui-là, pas un autre. »</p></div>
+    <div class="card"><h4>Abonnement</h4><p>« Tu viens à peu près toutes les six semaines. Avec le club, c'est le même rythme, 15 % de moins, et tu passes en priorité. »</p></div>
+  </div>
+</section>
+
+<!-- ============ IA ============ -->
+<section class="view" id="v-ai">
+  <h1>Assistante IA</h1>
+  <p class="lede">Rédige à partir de ton kit de marque. Considère le résultat comme un premier jet : coupe ce qui ne sonne pas comme toi.</p>
+  <div class="card">
+  <div class="row">
+    <select id="ai-task">
+      <option value="caption">Légende Instagram pour un post</option>
+      <option value="reels">5 idées de Reel / TikTok avec accroches</option>
+      <option value="offer">Concevoir une offre promotionnelle</option>
+      <option value="review">Répondre à un avis</option>
+      <option value="campaign">Plan de campagne d'un mois</option>
+      <option value="bio">Réécrire notre bio Instagram</option>
+      <option value="story">7 idées de Stories pour la semaine</option>
+    </select>
+  </div>
+  <label>Détails (sujet du post, service, texte de l'avis, objectif…)</label>
+  <textarea id="ai-input" placeholder="ex. Reel de tresses knotless, longueur moyenne, 4 heures, la cliente a dit que c'était la première fois sans tension. Les mardis sont ouverts."></textarea>
+  <details><summary>Clé API Anthropic (optionnel)</summary>
+    <p class="small">Sans clé, l'assistante utilise des modèles intégrés hors ligne. Avec une clé, elle appelle Claude directement. La clé reste dans ton navigateur uniquement.</p>
+    <input type="password" id="ai-key" placeholder="sk-ant-…" autocomplete="off">
+  </details>
+  <div class="row"><button onclick="runAI()" id="ai-btn">Générer</button><button class="ghost" onclick="copyText('ai-out')">Copier</button></div>
+  </div>
+  <div class="out" id="ai-out">Ton brouillon apparaîtra ici.</div>
+</section>
+
+<!-- ============ GLOSSAIRE ============ -->
+<section class="view" id="v-glossary">
+  <h1>Métriques & glossaire</h1>
+  <h2>À suivre chaque mois (une feuille, cinq chiffres)</h2>
+  <div class="tbl"><table><tr><th>Métrique</th><th>Pourquoi</th><th>Bon signe</th></tr>
+  <tr><td>Nouvelles clientes</td><td>Le marketing fait-il entrer des gens ?</td><td>En hausse mois après mois</td></tr>
+  <tr><td>Taux de re-réservation</td><td>Les premières visites reviennent-elles sous 8 semaines ?</td><td>Au-dessus de 50 %</td></tr>
+  <tr><td>Avis Google (nombre + note)</td><td>Confiance et classement local</td><td>+12/mois, 4,6+</td></tr>
+  <tr><td>Clics sur le lien de réservation</td><td>Le contenu convertit-il ?</td><td>Monte avec la portée</td></tr>
+  <tr><td>Chiffre des jours creux</td><td>Les offres remplissent-elles les trous ?</td><td>Mar/mer en hausse</td></tr></table></div>
+  <p>Les métriques de vanité (abonnés, likes) se notent mais ne font jamais le titre. Demande-toi : « est-ce que ça a mené à une réservation ? »</p>
+
+  <h2>Glossaire</h2>
+  <div class="tbl"><table>
+  <tr><td><b>CTA</b></td><td>Appel à l'action. La ligne « réserve maintenant ».</td></tr>
+  <tr><td><b>CAC</b></td><td>Coût d'acquisition client. Dépenses marketing ÷ nouvelles clientes.</td></tr>
+  <tr><td><b>LTV</b></td><td>Valeur à vie. Dépense moyenne par visite × visites par an × années. Une cliente à 90 $ toutes les 6 semaines vaut environ 780 $/an : ça justifie une remise première visite de 20 $.</td></tr>
+  <tr><td><b>Portée / Impressions</b></td><td>Personnes uniques qui ont vu / nombre total d'affichages.</td></tr>
+  <tr><td><b>Taux d'engagement</b></td><td>(Likes + commentaires + enregistrements + partages) ÷ portée. Enregistrements et partages comptent le plus.</td></tr>
+  <tr><td><b>UGC</b></td><td>Contenu généré par les clientes : leurs propres posts, identifications et Stories à ton sujet.</td></tr>
+  <tr><td><b>NAP</b></td><td>Nom, Adresse, Téléphone : doivent être identiques sur toutes les fiches pour le référencement local.</td></tr>
+  <tr><td><b>SEO local</b></td><td>Apparaître dans les résultats « près de moi » et sur la carte. Porté par Google Business Profile, les avis et des fiches cohérentes.</td></tr>
+  <tr><td><b>Reciblage</b></td><td>Publicités montrées aux personnes qui ont déjà visité ton profil ou ton site.</td></tr>
+  <tr><td><b>Audience similaire</b></td><td>Ciblage publicitaire de personnes qui ressemblent à ta liste clientes.</td></tr>
+  <tr><td><b>Pilier de contenu</b></td><td>Un thème récurrent dans lequel tu publies toujours.</td></tr>
+  <tr><td><b>Produit d'appel</b></td><td>Un service peu cher pour faire entrer les gens (ex. 15 $ la mise en forme des sourcils).</td></tr>
+  <tr><td><b>Vente additionnelle / croisée</b></td><td>Ajouter un soin à la même visite / réserver un autre service la prochaine fois.</td></tr>
+  <tr><td><b>Ancrage de prix</b></td><td>Montrer une option premium pour que l'option du milieu paraisse raisonnable.</td></tr>
+  <tr><td><b>Commercialisation</b></td><td>Transformer compétences et espace en offres vendables et répétables : forfaits, abonnements, cartes-cadeaux, produits, ateliers.</td></tr>
+  </table></div>
+</section>
+
+</main>
+</div>
+
+<script>
+/* ---------- splash ---------- */
+const splash=document.getElementById('splash');
+function openApp(){splash.classList.add('hide');setTimeout(()=>splash.remove(),800);}
+splash.addEventListener('click',openApp);
+splash.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')openApp()});
+
+/* ---------- sakura ---------- */
+(function(){const c=document.getElementById('sakura');const ctx=c.getContext('2d');let W,H,petals=[];
+function resize(){W=c.width=innerWidth*devicePixelRatio;H=c.height=innerHeight*devicePixelRatio;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px'}
+addEventListener('resize',resize);resize();
+const N=Math.min(60,Math.floor(innerWidth/18));
+function mk(top){return{x:Math.random()*W,y:top?-20:Math.random()*H,r:(6+Math.random()*8)*devicePixelRatio,vy:(0.4+Math.random()*0.9)*devicePixelRatio,vx:(Math.random()-0.5)*0.5*devicePixelRatio,a:Math.random()*Math.PI*2,va:(Math.random()-0.5)*0.02,sw:Math.random()*Math.PI*2,col:['#F2C4D4','#E9A9C0','#F7DCE5','#D98BA7','#FBE4EC'][Math.floor(Math.random()*5)],op:0.55+Math.random()*0.4}}
+for(let i=0;i<N;i++)petals.push(mk(false));
+function petal(p){ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.a);ctx.globalAlpha=p.op;ctx.fillStyle=p.col;ctx.beginPath();const r=p.r;
+ctx.moveTo(0,-r);ctx.bezierCurveTo(r*0.9,-r*0.9,r*0.9,r*0.4,0,r);ctx.bezierCurveTo(-r*0.9,r*0.4,-r*0.9,-r*0.9,0,-r);ctx.fill();
+ctx.globalAlpha=p.op*0.5;ctx.fillStyle='#fff';ctx.beginPath();ctx.ellipse(-r*0.2,-r*0.3,r*0.25,r*0.4,-0.5,0,Math.PI*2);ctx.fill();ctx.restore()}
+let t=0;function frame(){t+=0.01;ctx.clearRect(0,0,W,H);for(const p of petals){p.sw+=0.02;p.x+=p.vx+Math.sin(p.sw)*0.6*devicePixelRatio;p.y+=p.vy;p.a+=p.va;if(p.y>H+30||p.x<-30||p.x>W+30)Object.assign(p,mk(true));petal(p)}requestAnimationFrame(frame)}
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches)frame();})();
+
+/* ---------- navigation ---------- */
+const nav=document.getElementById('nav');
+function go(id){nav.querySelectorAll('button').forEach(x=>x.classList.toggle('active',x.dataset.v===id));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('v-'+id).classList.add('active');window.scrollTo(0,0);location.hash=id}
+nav.addEventListener('click',e=>{const b=e.target.closest('button');if(b)go(b.dataset.v)});
+if(location.hash&&document.getElementById('v-'+location.hash.slice(1)))go(location.hash.slice(1));
+
+/* ---------- persistance ---------- */
+const mem={};
+function sget(k){try{return localStorage.getItem(k)}catch(e){return mem[k]||null}}
+function sset(k,v){mem[k]=v;try{localStorage.setItem(k,v)}catch(e){}}
+function loadAll(){
+  for(const el of document.querySelectorAll('[data-save]')){const v=sget('smt:'+el.dataset.save);if(v!=null)el.value=v;
+    el.addEventListener('change',()=>sset('smt:'+el.dataset.save,el.value));}
+  for(const box of document.querySelectorAll('[data-checklist]')){const v=sget('smt:chk:'+box.dataset.checklist);
+    const inputs=box.querySelectorAll('input');if(v){try{JSON.parse(v).forEach((c,i)=>{if(inputs[i])inputs[i].checked=c})}catch(e){}}
+    box.addEventListener('change',()=>{sset('smt:chk:'+box.dataset.checklist,JSON.stringify([...inputs].map(i=>i.checked)));updProg(box)});updProg(box);}
+}
+function updProg(box){const inputs=[...box.querySelectorAll('input')];const p=box.nextElementSibling;if(p&&p.classList.contains('progress'))p.firstElementChild.style.width=(100*inputs.filter(i=>i.checked).length/inputs.length)+'%'}
+function saveAll(){for(const el of document.querySelectorAll('[data-save]'))sset('smt:'+el.dataset.save,el.value);const s=document.getElementById('b-status');s.textContent='Enregistré, Marie.';setTimeout(()=>s.textContent='',2000)}
+function brandContext(){const g=k=>document.querySelector(`[data-save="${k}"]`).value.trim();
+  return `Salon : ${g('b-name')||'(salon sans nom)'} à ${g('b-city')||'(ville)'}. Services : ${g('b-services')||'coiffure, peau, ongles, spa'}. Slogan : ${g('b-tagline')||'aucun'}. Archétype : ${g('b-arch')}. Voix : ${g('b-voice')||'chaleureuse, confiante'}. Clientes cibles : ${g('b-target')||'femmes locales 25-45'}. Différenciateurs : ${g('b-diff')||'non précisés'}. Règles de mots : ${g('b-words')||'aucune'}.`}
+loadAll();
+
+/* ---------- aujourd'hui ---------- */
+const AFFIRM=[
+"Je suis cette fille : celle qui publie même quand ce n'est pas parfait.",
+"Chaque avis cinq étoiles commence par une cliente à qui j'ai osé demander.",
+"Je ne vends pas des services, je vends la sensation de repartir plus belle.",
+"Un post aujourd'hui vaut mieux qu'un plan parfait la semaine prochaine.",
+"Ma marque, c'est une promesse tenue tous les jours, pas un logo.",
+"Les mardis vides sont des opportunités qui attendent une offre.",
+"Je réponds à chaque commentaire comme à une cliente au fauteuil.",
+"Petite, locale et engagée bat grosse et silencieuse.",
+"Je suis la personne que mes clientes recommandent à leurs amies.",
+"Aujourd'hui, je demande une re-réservation avant de dire au revoir.",
+"Ma caméra est un outil de travail, pas une source de stress.",
+"Je construis quelque chose qui rapporte même quand je dors : abonnements, cartes, produits.",
+"Une cliente fidèle vaut plus que dix nouvelles abonnées.",
+"Je suis douée, et le monde a le droit de le voir.",
+"Le contenu qui éduque construit la confiance ; la confiance remplit l'agenda.",
+"Mon salon est facile à trouver, facile à croire, facile à réserver.",
+"Chaque transformation filmée est une cliente future qui me découvre.",
+"Je choisis la constance plutôt que l'intensité.",
+"Je mérite un agenda plein et des clientes qui me respectent.",
+"Ce que je fais avec mes mains change des journées entières. Je le montre.",
+"Je suis that girl. Et cette fille passe à l'action.",
+"Un rappel envoyé aujourd'hui, c'est une place remplie dans six semaines.",
+"Je nomme mes prix avec fierté : le savoir-faire a un prix.",
+"Ma liste clientes m'appartient. Les algorithmes, non.",
+"Chaque jour, une action. Chaque semaine, un résultat.",
+"Je suis la stratège de mon propre succès.",
+"Le premier jet suffit pour publier. Le perfectionnisme, lui, ne réserve rien.",
+"Je transforme mes compétences en offres que les gens sont heureux d'acheter.",
+"Je réponds aux mauvais avis avec calme, parce que les futures clientes lisent.",
+"Mon coin selfie travaille pour moi pendant que je travaille pour elles.",
+"Ce mois-ci, je remplis mes créneaux creux avec intelligence, pas avec des rabais désespérés."];
+const TODAY_POOL={
+ start:[["Vérifier le lien de réservation","Ouvre ton bio Instagram, ta fiche Google et ta réponse auto WhatsApp. Le lien de réservation est-il présent et fonctionnel dans les trois ?"],["Relire les 90 jours","Où en es-tu dans le plan des 90 jours ? Coche mentalement ce qui est fait, choisis la prochaine étape."],["Noter tes 5 chiffres","Nouvelles clientes, re-réservations, avis, clics de réservation, chiffre des jours creux. Une ligne, cinq nombres."]],
+ frameworks:[["Écrire une phrase SOSTAC","Complète une seule case du tableau SOSTAC : Situation ou Objectif. Une phrase suffit."],["Relire ton positionnement","Lis ton énoncé de positionnement à voix haute. Est-il vrai aujourd'hui ? Ajuste un mot."],["Cartographier une étape du parcours","Choisis l'étape « Partir » : qu'est-ce que la cliente reçoit en sortant ? Carte, lien d'avis, demande de re-réservation ?"]],
+ brand:[["Cocher un point de la marque","Ouvre la liste de contrôle de la marque et fais avancer un seul élément."],["Tester ta voix","Écris une légende de deux lignes dans l'archétype choisi. Est-ce que ça sonne comme toi ?"],["Vérifier la cohérence","Compare ta photo de profil et ton nom sur Instagram, TikTok et Google. Identiques ?"]],
+ social:[["Filmer 3 clips bruts","Avant, pendant, révélation. Vertical, lumière naturelle, avec consentement. Ne monte pas encore."],["Publier 2 Stories","Une disponibilité du jour et un coulisse. Dix minutes, pas plus."],["Répondre à tous les messages","Commentaires et DMs : zéro en attente avant midi."],["Interagir avec 10 comptes locaux","Commente sincèrement chez 10 commerces ou clientes du quartier."]],
+ ideas:[["Tirer une carte d'idée","Va dans la Banque d'idées, tire une carte, et décide : je la fais cette semaine ou je la jette."],["Chercher une idée « Gratuit »","Filtre par coût gratuit et choisis celle que tu peux lancer en moins d'une heure."]],
+ visibility:[["Ajouter une photo Google","Une photo de résultat sur la fiche Google Business Profile. Ça garde la fiche fraîche."],["Demander un avis","Envoie le lien d'avis à la dernière cliente heureuse. Une ligne, un lien."],["Répondre aux avis en attente","Chaque avis sans réponse en reçoit une aujourd'hui, même « merci »."]],
+ calendar:[["Regarder le post du jour","Ouvre le calendrier de contenu : quel pilier est prévu aujourd'hui ? Prépare-le."],["Planifier la semaine prochaine","Génère le calendrier et programme au moins deux posts dans ton outil."]],
+ commerce:[["Proposer un ajout de service","À chaque cliente aujourd'hui : « on ajoute un soin, quinze minutes ? »"],["Mettre un produit en avant","Choisis le produit que tu utilises le plus et mentionne-le dans une Story."],["Recalculer ta valeur cliente","Ouvre la calculatrice LTV et vérifie ce qu'une cliente fidèle vaut vraiment."],["Demander une re-réservation","Avant chaque au revoir : « je te garde ta place dans six semaines ? »"]],
+ ai:[["Générer une légende","Demande à l'assistante une légende pour le post du jour et coupe ce qui ne sonne pas comme toi."],["Rédiger 7 Stories","Demande 7 idées de Stories pour la semaine et copie-les dans tes notes."]]};
+const SECTION_NAMES={start:"Commencer ici",frameworks:"Cadres",brand:"Kit de marque",social:"Réseaux sociaux",ideas:"Banque d'idées",visibility:"Visibilité",calendar:"Calendrier",commerce:"Commercialisation",ai:"Assistante IA"};
+function dayKey(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
+function seeded(seed){let s=seed;return()=>{s=(s*9301+49297)%233280;return s/233280}}
+function buildToday(force){
+  const d=new Date();const doy=Math.floor((d-new Date(d.getFullYear(),0,0))/864e5);
+  const h=d.getHours();document.getElementById('greet').textContent=(h<5?'Bonne nuit':h<12?'Bonjour':h<18?'Bon après-midi':'Bonsoir')+', Marie';
+  document.getElementById('today-date').textContent=d.toLocaleDateString('fr-CA',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('affirm').textContent=AFFIRM[doy%AFFIRM.length];
+  const key='smt:today:'+dayKey();let state=null;try{state=JSON.parse(sget(key))}catch(e){}
+  if(!state||force){const rnd=seeded(doy+(force?Date.now()%1000:0));state={picks:{},done:{}};for(const k in TODAY_POOL){state.picks[k]=Math.floor(rnd()*TODAY_POOL[k].length)}sset(key,JSON.stringify(state))}
+  const wrap=document.getElementById('today-cards');wrap.innerHTML='';let n=0,tot=0;
+  for(const k in TODAY_POOL){const it=TODAY_POOL[k][state.picks[k]]||TODAY_POOL[k][0];const done=!!state.done[k];tot++;if(done)n++;
+    const card=document.createElement('div');card.className='card todo'+(done?' done':'');
+    card.innerHTML=`<input type="checkbox" ${done?'checked':''} aria-label="Fait"><div><span class="k">${SECTION_NAMES[k]}</span><b>${it[0]}</b><p>${it[1]}</p><button class="linkbtn" data-go="${k}">Ouvrir la section</button></div>`;
+    card.querySelector('input').addEventListener('change',e=>{state.done[k]=e.target.checked;sset(key,JSON.stringify(state));buildToday(false)});
+    card.querySelector('[data-go]').addEventListener('click',()=>go(k));wrap.appendChild(card)}
+  document.getElementById('today-count').textContent=n+'/'+tot;
+}
+function shuffleToday(){buildToday(true)}
+buildToday(false);
+
+/* ---------- banque d'idées ---------- */
+const IDEAS=[
+["Reel avant/après avec révélation flash d'une seconde","Filme le « avant » en image fixe, puis la révélation avec une coupe nette sur le temps. Ajoute nom du service et prix à l'écran.","Notoriété","Tous","Instagram","Gratuit"],
+["POV : ton premier rendez-vous","Parcours de la porte au fauteuil au miroir. Rassure les nerveuses.","Réservations","Tous","TikTok","Gratuit"],
+["Mardi/mercredi 15 % de rabais","Remplir les jours creux. Promu seulement dimanche et lundi pour créer la rareté.","Réservations","Tous","Instagram","Faible"],
+["QR d'avis sur le miroir","La cliente le voit en admirant le résultat. Moment de plus forte intention pour demander un avis.","Avis","Tous","En salon","Faible"],
+["Merci WhatsApp le jour même avec lien d'avis","Envoie dans les 2 heures. Personnel, une ligne, un lien.","Avis","Tous","WhatsApp","Gratuit"],
+["Parrainage : 15 $ pour chacune","Carte remise à la caisse avec un code ou juste son prénom. Suivi dans les notes de réservation.","Parrainage","Tous","En salon","Faible"],
+["Étiquette « ce que j'ai vraiment utilisé »","Termine chaque post avec les 2 ou 3 produits utilisés. Vend la boutique, bâtit l'autorité.","Fidélisation","Tous","Instagram","Gratuit"],
+["Tutoriel retrait de tresses et soin du cuir chevelu","Éducation pour clientes aux cheveux texturés. Positionne le salon comme soin d'abord.","Notoriété","Coiffure","TikTok","Gratuit"],
+["Un gel qui tient : 5 choses qui ruinent ta manucure","Carrousel ou Reel face caméra qui démonte les mythes.","Notoriété","Ongles","Instagram","Gratuit"],
+["Quiz type de peau en Stories","Série de sondages qui finit par « envoie-nous ton résultat en DM pour une recommandation de soin ».","Réservations","Peau","Instagram","Gratuit"],
+["Forfait reset de 90 minutes","Soin du visage + manucure + massage de 20 min avec petit rabais. Vends la sensation, pas la liste.","Réservations","Spa","Instagram","Gratuit"],
+["Abonnement mensuel","Club brushing, club soin ou club manucure. Payé d'avance, réservation prioritaire.","Fidélisation","Tous","En salon","Gratuit"],
+["Cadeau du mois d'anniversaire","Option gratuite pendant le mois d'anniversaire. Demande de collecter les dates à l'accueil.","Fidélisation","Tous","WhatsApp","Faible"],
+["Script de re-réservation au fauteuil","« Je te garde ta place dans 6 semaines ? » La fidélisation double quand on demande en personne.","Fidélisation","Tous","En salon","Gratuit"],
+["Journée prise de contrôle par une coiffeuse","Une coiffeuse gère les Stories une journée : sa musique, ses conseils, ses clientes. Les gens réservent des personnes.","Notoriété","Tous","Instagram","Gratuit"],
+["Lancement forfait mariée (jan à mars)","Essai + jour J + tarif demoiselles d'honneur. Partenariat photographe pour le shooting.","Réservations","Tous","Instagram","Moyen"],
+["Visite d'une micro-influenceuse locale","Service offert à une créatrice de 2 000 à 20 000 abonnés locaux contre du contenu honnête.","Notoriété","Tous","Local","Moyen"],
+["Promo croisée gym / boutique","Laisse des bons de 10 $ dans un gym voisin ; ils laissent les leurs chez toi.","Notoriété","Tous","Local","Faible"],
+["Flyer condo avec offre première visite","Les nouvelles résidentes ont besoin d'un salon. Cible les immeubles à distance de marche.","Réservations","Tous","Local","Faible"],
+["Photo Google hebdomadaire","Une photo de résultat par semaine garde la fiche « fraîche » pour le classement.","Notoriété","Tous","Google","Gratuit"],
+["Amorcer les Questions-réponses Google","Ajoute 5 questions courantes et réponds-y toi-même (stationnement, sans rendez-vous, enfants, prix).","Réservations","Tous","Google","Gratuit"],
+["Avis en visuel chaque mois","Transforme les 3 meilleurs avis en visuels de marque. Preuve sociale sur la grille.","Avis","Tous","Instagram","Gratuit"],
+["Timelapse d'une couleur complète","Trois heures accélérées en 20 secondes ; finis sur la révélation.","Notoriété","Coiffure","TikTok","Gratuit"],
+["Nail art de la semaine","Un design mis en avant chaque lundi ; les clientes réservent « le design du lundi ».","Réservations","Ongles","Instagram","Gratuit"],
+["Clip spa ASMR","Serviette chaude, huile, silence. Pas de parole. Temps de visionnage étonnamment élevé.","Notoriété","Spa","TikTok","Gratuit"],
+["« Ce que je ne ferais jamais à ma peau » face caméra","Esthéticienne à l'écran, 3 opinions rapides. Contenu d'autorité.","Notoriété","Peau","TikTok","Gratuit"],
+["Compilation de réactions clientes","Avec consentement uniquement. Vraies réactions aux révélations montées en musique.","Notoriété","Tous","Instagram","Gratuit"],
+["Alerte créneau libre en Story","« Une place jeudi 14 h, écris-nous pour la prendre. » Crée l'urgence, comble les trous.","Réservations","Tous","Instagram","Gratuit"],
+["Poussée cartes-cadeaux (nov, fév, mai)","Conçois une carte numérique ; promeus-la 3 semaines avant chaque fête.","Réservations","Tous","Instagram","Faible"],
+["Mercredi étudiant","Carte étudiante = tarif fixe. Publie près des campus et dans les groupes étudiants.","Réservations","Tous","Local","Gratuit"],
+["Heure soins pour hommes","Bloc horaire dédié avec menu simple. Sous-servi dans beaucoup de salons.","Réservations","Coiffure","Instagram","Gratuit"],
+["Dimanche mère-fille","Deux services, un prix. Excellent contenu photo avec consentement.","Réservations","Tous","Instagram","Gratuit"],
+["Carte de soins avec QR","Carte imprimée : comment entretenir la coiffure, le lien d'avis, le lien de réservation.","Fidélisation","Tous","En salon","Faible"],
+["Boîte « Demande à la coiffeuse » en Story","Questions-réponses hebdo ; enregistre les réponses dans une Story à la une. Éducation infinie.","Notoriété","Tous","Instagram","Gratuit"],
+["Vlog journée type","Ouverture, première cliente, dîner, fermeture. Humanise la marque.","Notoriété","Tous","TikTok","Gratuit"],
+["Post transparence des prix","« Ce que 60 $ / 120 $ / 200 $ t'offrent ici. » Enlève la plus grande peur avant de réserver.","Réservations","Tous","Instagram","Gratuit"],
+["Série par type de cheveux","Un Reel par type montrant ce que tu recommandes. Signale l'expertise.","Notoriété","Coiffure","Instagram","Gratuit"],
+["Bar à tresses éphémère au marché","Styles simples, rapides, flyers et QR en main.","Notoriété","Coiffure","Local","Moyen"],
+["Démo mini-soin dans une boutique","Démos de 15 minutes à l'événement d'un partenaire ; collecte les numéros pour une offre de suivi.","Réservations","Peau","Local","Faible"],
+["Carte de fidélité à tampons","Le 6e service à moitié prix. Physique ou via l'app de réservation.","Fidélisation","Tous","En salon","Faible"],
+["Message de reconquête à 10 semaines","« Tu nous manques. Voici 10 $ ce mois-ci. » À toute cliente qui n'est pas revenue.","Fidélisation","Tous","WhatsApp","Gratuit"],
+["Liste clientes avec consentement","Collecte nom, téléphone, service, anniversaire, consentement aux messages à chaque accueil.","Fidélisation","Tous","En salon","Gratuit"],
+["Infolettre mensuelle (SMS ou courriel)","Nouveaux services, un conseil, une offre, créneaux libres. Court.","Fidélisation","Tous","Courriel/SMS","Gratuit"],
+["Son tendance, version salon","Prends le son de la semaine et applique-le à une révélation. Surfe l'algorithme.","Notoriété","Tous","TikTok","Gratuit"],
+["Duo sur un mythe beauté","Réponds à une vidéo virale de mauvais conseil avec une correction calme.","Notoriété","Peau","TikTok","Gratuit"],
+["Coin selfie","Bonne lumière, plante, miroir, petit logo. Les clientes publient pour toi.","Parrainage","Tous","En salon","Moyen"],
+["Identifie-nous pour gagner, chaque mois","Les clientes qui publient et identifient participent à un tirage. Machine à contenu client.","Parrainage","Tous","Instagram","Faible"],
+["Lancement saison pédicure (mai)","Campagne « prête pour les sandales », forfait gel orteils + massage des pieds.","Réservations","Ongles","Instagram","Gratuit"],
+["Clinique peau sèche d'hiver (jan)","Soin + plan d'hydratation maison ; Reels éducatifs en amont.","Réservations","Peau","Instagram","Gratuit"],
+["Ouverture des réservations glam des fêtes (nov)","Annonce tôt les créneaux de saison ; tarifs soirée premium.","Réservations","Tous","Instagram","Gratuit"],
+["Pub Meta : meilleur Reel + offre première visite","5 à 10 $/jour, rayon 5 km, femmes 22 à 50, 7 jours, mesure clics et réservations.","Réservations","Tous","Instagram","Moyen"],
+["Publication offre Google Business","Une offre mensuelle sur la fiche apparaît directement dans les résultats.","Réservations","Tous","Google","Gratuit"],
+["Partenariat communautaire","Église, association culturelle ou groupe de nouveaux arrivants : rabais membres et mention dans leur infolettre.","Notoriété","Tous","Local","Gratuit"],
+["Direct Q&R avec une spécialiste","Live Instagram de 30 minutes sur les locs, l'acné ou la santé des ongles. Enregistre en Story à la une.","Notoriété","Tous","Instagram","Gratuit"],
+["Carrousel portrait d'équipe","Photo, spécialité, service préféré, anecdote, comment réserver avec elle.","Réservations","Tous","Instagram","Gratuit"],
+["Avant/après avec les mots de la cliente","Superpose une citation d'une ligne de la cliente sur la photo de révélation.","Avis","Tous","Instagram","Gratuit"],
+["Commanditer une équipe ou un événement local","Un peu d'argent ou des cartes-cadeaux pour une école ; logo sur le flyer, histoire sur ta grille.","Notoriété","Tous","Local","Moyen"],
+["Soirée spa pour deux","Forfait couple ou amies le vendredi. Pousse avant la Saint-Valentin et les longs week-ends.","Réservations","Spa","Instagram","Gratuit"],
+["Étagère « choix de l'équipe »","Trois produits avec notes manuscrites. Un par semaine en Story.","Fidélisation","Tous","En salon","Faible"],
+["Atelier : entretenir sa coiffure à la maison","Petite classe payante ; les participantes deviennent clientes et contenu.","Réservations","Coiffure","En salon","Faible"],
+];
+const list=document.getElementById('ideaList');
+function filtered(){const g=v('f-goal'),s=v('f-service'),c=v('f-channel'),k=v('f-cost'),t=v('f-text').toLowerCase();
+  return IDEAS.filter(i=>(!g||i[2]===g)&&(!s||i[3]===s||i[3]==='Tous')&&(!c||i[4]===c)&&(!k||i[5]===k)&&(!t||(i[0]+i[1]).toLowerCase().includes(t)))}
+function v(id){return document.getElementById(id).value}
+function renderIdeas(){const f=filtered();document.getElementById('ideaCount').textContent=f.length+' idées';
+  list.innerHTML=f.map(i=>`<div class="idea"><b>${i[0]}</b><p>${i[1]}</p><span class="tag">${i[2]}</span><span class="tag sage">${i[3]}</span><span class="tag">${i[4]}</span><span class="tag sage">Coût ${i[5].toLowerCase()}</span></div>`).join('')}
+function drawIdea(){const f=filtered();if(!f.length){document.getElementById('drawCard').innerHTML='<h3>Aucune idée ne correspond</h3><p>Desserre les filtres, Marie.</p>';return}
+  const i=f[Math.floor(Math.random()*f.length)];document.getElementById('drawCard').innerHTML=`<h3>${i[0]}</h3><p>${i[1]}</p><span class="tag">${i[2]}</span><span class="tag">${i[3]}</span><span class="tag">${i[4]}</span><span class="tag">Coût ${i[5].toLowerCase()}</span>`}
+['f-goal','f-service','f-channel','f-cost'].forEach(id=>document.getElementById(id).addEventListener('change',renderIdeas));
+document.getElementById('f-text').addEventListener('input',renderIdeas);renderIdeas();
+
+/* ---------- calendrier ---------- */
+const PILLARS={
+ Transformations:{w:4,items:{Coiffure:["Reel révélation couleur","Timelapse pose de tresses","Avant/après lissage","Révélation coupe avec réaction"],Peau:["Avant/après éclat du visage","Progrès acné (consentement)","Révélation sourcils","Révélation rehaussement de cils"],Ongles:["Nail art de la semaine","Révélation pose Gel-X","Transformation pédicure","Macro french manucure"],Spa:["ASMR salle de massage","Processus gommage corps","Clip rituel serviette chaude","Visite forfait spa"]}},
+ Éducation:{w:2,items:{Coiffure:["Mythes du cuir chevelu","Durée de chaque service","Soins coiffure protectrice","Quel service pour ton type de cheveux"],Peau:["5 choses qui abîment ta barrière cutanée","Quiz type de peau en Story","Conseils crème solaire","Ce qu'un soin du visage fait vraiment"],Ongles:["Pourquoi ton gel s'écaille","Signes de santé des ongles","Préparer ton rendez-vous","Retrait bien fait"],Spa:["Bienfaits du massage lymphatique","Choisir son soin","À quoi s'attendre la première fois","Soins après spa"]}},
+ "Derrière le fauteuil":{w:2,items:{Coiffure:["Portrait coiffeuse","Journée type","Visite des outils","Déroulé d'une consultation"],Peau:["Q&R esthéticienne","Produits choix de l'équipe","Visite de la salle","Routine d'hygiène"],Ongles:["Visite du mur de couleurs","Portrait technicienne","Processus de stérilisation","Croquis de designs"],Spa:["Reel ouverture du spa","Présentation thérapeute","Playlist et parfums","Clip heure calme"]}},
+ "Amour client":{w:1,items:{Coiffure:["Visuel d'avis","Clip réaction cliente","Repartage contenu client","Post merci"],Peau:["Visuel d'avis","Témoignage cliente","Repartage contenu client","Avant/après avec citation"],Ongles:["Repartage selfie cliente","Visuel d'avis","Rappel identifie-nous pour gagner","Story témoignage"],Spa:["Visuel d'avis","Merci forfait couple","Repartage contenu client","Témoignage"]}},
+ "Offres & nouvelles":{w:1,items:{Coiffure:["Offre jour creux","Lancement nouveau service","Alerte créneaux libres","Rappel parrainage"],Peau:["Offre forfait","Lancement abonnement","Clinique saisonnière","Poussée cartes-cadeaux"],Ongles:["Offre design du mois","Tarif étudiant","Alerte créneaux libres","Rappel carte fidélité"],Spa:["Soirée spa pour deux","Tarif heures creuses","Poussée cartes-cadeaux","Abonnement"]}}};
+const SERV=["Coiffure","Peau","Ongles","Spa"];let calText='';
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function genCalendar(){const freq=+v('c-freq'),focus=v('c-focus');const days=['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+  const slots={3:[0,2,4],4:[0,2,4,5],5:[0,1,2,4,5],6:[0,1,2,3,4,5]}[freq];
+  const pool=[];Object.entries(PILLARS).forEach(([p,d])=>{for(let i=0;i<d.w;i++)pool.push(p)});
+  let html='',txt='';for(let w=1;w<=4;w++){html+=`<h4>Semaine ${w}</h4><div class="cal">`;txt+=`SEMAINE ${w}\n`;
+    for(let d=0;d<7;d++){html+=`<div><b>${days[d]}</b>`;if(slots.includes(d)){const p=pick(pool);const s=focus==='Mixte'?pick(SERV):(Math.random()<.7?focus:pick(SERV));const item=pick(PILLARS[p].items[s]);
+      html+=`<span class="pill">${p}</span><br>${item} <span class="small">(${s})</span>`;txt+=`  ${days[d]} : [${p}] ${item} (${s})\n`}else if(d===6){html+='<span class="small">Stories seulement : récap de la semaine, créneaux libres</span>'}else{html+='<span class="small">Stories seulement</span>'}html+='</div>'}
+    html+='</div>';txt+='\n'}
+  document.getElementById('calendar').innerHTML=html;calText=txt}
+function copyCalendar(){if(!calText)genCalendar();navigator.clipboard&&navigator.clipboard.writeText(calText)}
+genCalendar();
+
+/* ---------- commercialisation ---------- */
+function ladder(){const b=+document.getElementById('ladder-base').value||60;const f=n=>Math.round(n/5)*5+' $';document.getElementById('l1').textContent=f(b);document.getElementById('l2').textContent=f(b*1.6);document.getElementById('l3').textContent=f(b*2.5)}
+function ltv(){const s=+document.getElementById('ltv-spend').value||0,vv=+document.getElementById('ltv-visits').value||0,y=+document.getElementById('ltv-years').value||0;const yr=s*vv,life=yr*y;
+  document.getElementById('ltv-out').textContent=`Une cliente vaut ${yr.toLocaleString('fr-CA')} $ par an et ${life.toLocaleString('fr-CA')} $ sur ${y} an${y>1?'s':''}. Tu peux investir jusqu'à ${Math.round(life*0.1).toLocaleString('fr-CA')} $ (10 %) pour la gagner.`}
+ladder();ltv();
+
+/* ---------- assistante IA ---------- */
+const TASKS={caption:"Écris une légende Instagram (max 120 mots) en AIDA : ligne d'accroche, ce qui a été fait, un conseil ou une émotion, un appel à l'action avec « lien en bio ». Ajoute ensuite 8 hashtags : 3 locaux, 3 services, 2 niche.",
+reels:"Donne 5 idées de Reel/TikTok. Pour chacune : une accroche à l'écran de 2 secondes, une liste de plans en une ligne, et la première ligne de la légende. Priorise transformations et éducation.",
+offer:"Conçois une offre promotionnelle : nom, mécanique, cible, période, comment la promouvoir sur 3 canaux, et un risque à surveiller. Assez simple pour l'expliquer à l'accueil.",
+review:"Réponds à cet avis (max 80 mots). Chaleureux, précis, jamais sur la défensive. Si négatif : reconnaître, proposer un contact hors ligne, pas d'excuses.",
+campaign:"Construis un plan de campagne d'un mois : objectif, cible, message clé, contenu semaine par semaine (4 semaines), offre, canaux, et 3 métriques à suivre. Listes courtes.",
+bio:"Réécris la bio Instagram : 3 lignes courtes (qui on sert + ce qu'on fait, différenciateur, ville) plus un appel à réserver. Max 150 caractères au total. Donne 3 options.",
+story:"Donne 7 idées de Stories Instagram pour la semaine, une par jour, en mélangeant sondages, coulisses, créneaux libres, conseils et amour client. Une ligne chacune."};
+function offline(task,input){const g=k=>document.querySelector(`[data-save="${k}"]`).value.trim();const name=g('b-name')||'notre salon',city=g('b-city')||'ton quartier',svc=(input||g('b-services')||'ce service').split(/[,.]/)[0].trim();
+  const T={
+  caption:`${svc.charAt(0).toUpperCase()+svc.slice(1)} : entrée avec une idée, sortie avec le résultat.\nFait aujourd'hui chez ${name}, avec le temps qu'il faut et zéro tension.\nPetit conseil : hydrate le cuir chevelu deux fois par semaine pour que ça tienne.\nRéserve via le lien en bio, les mardis sont ouverts.\n\n#Salon${city.replace(/\W/g,'')} #Beaute${city.replace(/\W/g,'')} #${svc.replace(/\W/g,'')} #SoinsCapillaires #NailArt #SoinDuVisage #CheveuxTextures #IAmThatGirl`,
+  reels:`1. Accroche : « Elle est arrivée avec ___ » · Plans : avant fixe, mains au travail, révélation · Légende : Regarde jusqu'à la fin.\n2. Accroche : « POV : ta première fois chez ${name} » · Plans : porte, fauteuil, miroir · Légende : On t'attend.\n3. Accroche : « Arrête de faire ça » · Plans : face caméra, 3 erreurs · Légende : Ton ${svc} mérite mieux.\n4. Accroche : « ${svc} en 15 secondes » · Plans : timelapse · Légende : Trois heures, quinze secondes.\n5. Accroche : « Ce que 80 $ t'offre ici » · Plans : menu, service, résultat · Légende : Transparence totale.`,
+  offer:`Nom : Mardi Douceur\nMécanique : 15 % sur tout ${svc} réservé un mardi avant 14 h.\nCible : étudiantes, mamans en congé, télétravailleuses.\nPériode : 8 semaines, promue dimanche et lundi seulement.\nCanaux : Story Instagram avec compte à rebours, offre Google Business, liste WhatsApp.\nRisque : les habituées du samedi qui migrent. Limite l'offre aux nouvelles clientes ou aux créneaux vides.`,
+  review:`Merci infiniment pour ce mot. ${input?'Nous avons lu chaque ligne avec attention. ':''}Toute l'équipe de ${name} met du cœur dans chaque ${svc}, et te lire nous rappelle pourquoi. Au plaisir de te revoir très vite. Si quelque chose peut être amélioré, écris-nous directement, on s'en occupe.`,
+  campaign:`Objectif : +30 réservations de ${svc} ce mois-ci.\nCible : femmes 25-45 à ${city}.\nMessage : « ${svc}, fait avec soin, sans tension. »\nSemaine 1 : 2 transformations, 1 éducation, lancement de l'offre.\nSemaine 2 : portrait d'équipe, avis en visuel, alerte créneaux.\nSemaine 3 : timelapse, Q&R en Story, rappel offre.\nSemaine 4 : compilation réactions, dernier appel, merci.\nOffre : première visite -15 $.\nCanaux : Instagram, TikTok, Google, WhatsApp.\nMétriques : clics de réservation, nouvelles clientes, avis reçus.`,
+  bio:`Option 1 : ${name} · ${svc} & soins pour toi · ${city} · Réserve ↓\nOption 2 : Beauté sans tension · ${svc}, ongles, spa · ${city} · Lien pour réserver ↓\nOption 3 : Ton heure à toi · ${svc} & plus · ${city} · Réservations ouvertes ↓`,
+  story:`Lun : sondage « ${svc} ou soin cette semaine ? »\nMar : créneau libre du jour\nMer : coulisses de la préparation\nJeu : un conseil en 15 secondes\nVen : avis de la semaine\nSam : révélation du jour\nDim : boîte à questions + récap`};
+  return '(Brouillon hors ligne, sans clé API)\n\n'+T[task]}
+async function runAI(){const btn=document.getElementById('ai-btn'),out=document.getElementById('ai-out');btn.disabled=true;out.textContent='Rédaction…';
+  const key=document.getElementById('ai-key').value.trim();const task=v('ai-task'),input=v('ai-input');
+  if(!key){out.textContent=offline(task,input);btn.disabled=false;return}
+  const prompt=`Tu es l'assistante marketing de Marie, propriétaire d'un salon de beauté. Réponds en français. Contexte de marque : ${brandContext()}\n\nTâche : ${TASKS[task]}\n\nDétails de Marie : ${input||'(aucun ; utilise le contexte de marque)'}\n\nÉcris dans la voix du salon. Texte brut, pas de titres markdown, pas d'émojis sauf si l'archétype est Bouffonne.`;
+  try{const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-5',max_tokens:1000,messages:[{role:'user',content:prompt}]})});
+    const d=await r.json();out.textContent=(d.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('\n')||(d.error&&d.error.message)||'Aucun texte reçu. Réessaie.'}
+  catch(e){out.textContent='Impossible de joindre l\'assistante. Vérifie ta connexion, ou laisse la clé vide pour le mode hors ligne.'}
+  btn.disabled=false}
+function copyText(id){const t=document.getElementById(id).textContent;navigator.clipboard&&navigator.clipboard.writeText(t)}
+
+/* ---------- PWA ---------- */
+if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}
+</script>
+</body>
+</html>
