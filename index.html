@@ -102,6 +102,10 @@ th{background:rgba(242,217,227,.5);font-weight:600}
 .idea{background:var(--glass);border:1.5px solid var(--glass-border);border-radius:14px;padding:14px 16px;margin:8px 0;backdrop-filter:blur(12px)}
 .idea b{display:block;font-size:1.02rem;color:var(--plum)}
 .idea p{margin:.3em 0 .5em;font-size:.93rem}
+.idea .step{margin:.6em 0 0;padding:.6em .8em;background:rgba(242,217,227,.55);border-radius:10px;font-size:.9rem}
+.idea .step b{display:inline;font-size:.85rem;color:var(--rose)}
+.draw .step-dark{margin:.8em 0 0;padding:.7em .9em;background:rgba(255,255,255,.14);border-radius:10px;font-size:.92rem}
+.draw .step-dark b{color:#FBE4EC}
 .draw{background:linear-gradient(135deg,rgba(59,30,61,.95),rgba(201,106,140,.9));color:#fff;border-radius:22px;padding:28px 30px;margin:10px 0 26px;position:relative;min-height:150px;box-shadow:0 16px 40px rgba(59,30,61,.25),inset 0 1px 0 rgba(255,255,255,.35)}
 .draw h3{margin:0 0 .3em;font-size:1.5rem;color:#fff}
 .draw p{color:rgba(255,255,255,.88)}
@@ -144,6 +148,27 @@ th{background:rgba(242,217,227,.5);font-weight:600}
 .ladder .card{text-align:center}
 .ladder .card.mid{transform:scale(1.04);border-color:var(--rose);background:linear-gradient(135deg,rgba(242,217,227,.9),rgba(255,255,255,.7))}
 .calc-out{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--plum);margin-top:8px}
+
+
+/* ---- mots croisés ---- */
+.xw-wrap{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px;margin-top:16px;align-items:start}
+.xw-grid-wrap{position:sticky;top:12px}
+.xw{display:grid;gap:2px;background:var(--plum);padding:6px;border-radius:14px;box-shadow:var(--glass-shadow);width:100%;max-width:560px;aspect-ratio:1;touch-action:manipulation}
+.xw .c{position:relative;background:#fff;border-radius:3px;min-width:0}
+.xw .c.b{background:transparent}
+.xw .c input{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;border-radius:3px;text-align:center;font-family:'Fraunces',serif;font-weight:600;font-size:clamp(.8rem,3.2vw,1.35rem);text-transform:uppercase;background:transparent;color:var(--plum);caret-color:transparent;backdrop-filter:none}
+.xw .c input:focus{outline:2px solid var(--rose);outline-offset:-2px}
+.xw .c.hl{background:var(--rose-2)}
+.xw .c.act{background:var(--rose-3)}
+.xw .c.ok input{color:var(--sage)}
+.xw .c.bad input{color:#C0392B}
+.xw .c .n{position:absolute;top:1px;left:2px;font-size:.5rem;line-height:1;color:var(--ink-2);font-family:'Karla';pointer-events:none}
+.xw-current{margin-top:10px;padding:10px 14px;background:var(--glass);border:1.5px solid var(--glass-border);border-radius:12px;font-size:.95rem;min-height:44px;backdrop-filter:blur(10px)}
+.xw-clues ol{padding-left:1.5em;margin:0;font-size:.92rem}
+.xw-clues li{cursor:pointer;padding:.25em .3em;border-radius:6px}
+.xw-clues li.act{background:var(--rose-2)}
+.xw-clues li.done{opacity:.5;text-decoration:line-through}
+@media(max-width:860px){.xw-wrap{grid-template-columns:1fr}.xw-grid-wrap{position:static}.xw{max-width:100%}}
 
 @media(max-width:860px){
   .app{grid-template-columns:1fr}
@@ -192,6 +217,7 @@ th{background:rgba(242,217,227,.5);font-weight:600}
   <button data-v="visibility">Visibilité locale</button>
   <button data-v="calendar">Calendrier de contenu</button>
   <button data-v="commerce">Commercialisation</button>
+  <button data-v="game">Mots croisés</button>
   <button data-v="ai">Assistante IA</button>
   <button data-v="glossary">Métriques & glossaire</button>
 </nav>
@@ -256,6 +282,7 @@ th{background:rgba(242,217,227,.5);font-weight:600}
     <li><b>Visibilité locale</b> comme liste de tâches pour être trouvée dans le quartier.</li>
     <li><b>Calendrier de contenu</b> pour générer un mois en un clic.</li>
     <li><b>Commercialisation</b> pour transformer les compétences en offres qui se vendent.</li>
+    <li><b>Mots croisés</b> pour retenir les concepts en jouant, cinq minutes par jour.</li>
     <li><b>Assistante IA</b> pour rédiger légendes, offres et campagnes à partir de ton kit de marque.</li>
   </ul>
   <div class="note">Les fiches et listes de cette application sont enregistrées dans ton navigateur. Copie ce qui est important dans tes propres notes ou ton Drive.</div>
@@ -439,7 +466,7 @@ th{background:rgba(242,217,227,.5);font-weight:600}
 <!-- ============ IDÉES ============ -->
 <section class="view" id="v-ideas">
   <h1>Banque d'idées</h1>
-  <p class="lede">Bloquée ? Filtre ou tire une carte. Chaque idée est étiquetée par objectif, service, canal et coût.</p>
+  <p class="lede">Bloquée ? Filtre ou tire une carte. Chaque idée est testée en salon, étiquetée par objectif, service, canal et coût, et vient avec une première étape concrète à faire aujourd'hui ou cette semaine.</p>
   <div class="draw" id="drawCard"><h3>Tire une idée</h3><p>Appuie sur le bouton et une idée au hasard apparaît ici, filtrée selon tes sélections.</p></div>
   <div class="filters">
     <button class="rose" onclick="drawIdea()">Tirer une carte</button>
@@ -600,6 +627,32 @@ th{background:rgba(242,217,227,.5);font-weight:600}
   </div>
 </section>
 
+
+<!-- ============ MOTS CROISÉS ============ -->
+<section class="view" id="v-game">
+  <h1>Mots croisés</h1>
+  <p class="lede">Une façon amusante de retenir les concepts, les cadres et les bons réflexes. Six grilles, chacune générée à partir d'un thème. Tape dans la grille ou touche un indice.</p>
+  <div class="card"><div class="row">
+    <select id="g-theme"></select>
+    <button onclick="newPuzzle(true)">Nouvelle grille</button>
+    <button class="ghost" onclick="checkPuzzle()">Vérifier</button>
+    <button class="ghost" onclick="revealWord()">Révéler le mot</button>
+    <button class="ghost" onclick="resetPuzzle()">Effacer</button>
+  </div>
+  <div class="row"><span class="small" id="g-status"></span></div>
+  <div class="progress"><i id="g-prog"></i></div></div>
+  <div class="xw-wrap">
+    <div class="xw-grid-wrap"><div id="xw" class="xw" role="grid" aria-label="Grille de mots croisés"></div>
+      <div class="xw-current" id="xw-current">Touche une case pour commencer.</div></div>
+    <div class="xw-clues">
+      <div class="card"><h3>Horizontal</h3><ol id="xw-across"></ol></div>
+      <div class="card"><h3>Vertical</h3><ol id="xw-down"></ol></div>
+    </div>
+  </div>
+  <div class="note">Les accents ne comptent pas : ÉDUCATION s'écrit EDUCATION. Ta progression est enregistrée par thème.</div>
+  <div class="card" style="margin-top:16px"><h3>Tableau d'honneur</h3><div id="xw-scores" class="small"></div></div>
+</section>
+
 <!-- ============ IA ============ -->
 <section class="view" id="v-ai">
   <h1>Assistante IA</h1>
@@ -749,8 +802,9 @@ const TODAY_POOL={
  visibility:[["Ajouter une photo Google","Une photo de résultat sur la fiche Google Business Profile. Ça garde la fiche fraîche."],["Demander un avis","Envoie le lien d'avis à la dernière cliente heureuse. Une ligne, un lien."],["Répondre aux avis en attente","Chaque avis sans réponse en reçoit une aujourd'hui, même « merci »."]],
  calendar:[["Regarder le post du jour","Ouvre le calendrier de contenu : quel pilier est prévu aujourd'hui ? Prépare-le."],["Planifier la semaine prochaine","Génère le calendrier et programme au moins deux posts dans ton outil."]],
  commerce:[["Proposer un ajout de service","À chaque cliente aujourd'hui : « on ajoute un soin, quinze minutes ? »"],["Mettre un produit en avant","Choisis le produit que tu utilises le plus et mentionne-le dans une Story."],["Recalculer ta valeur cliente","Ouvre la calculatrice LTV et vérifie ce qu'une cliente fidèle vaut vraiment."],["Demander une re-réservation","Avant chaque au revoir : « je te garde ta place dans six semaines ? »"]],
+ game:[["Résoudre une grille","Ouvre les Mots croisés, choisis un thème, trouve au moins cinq mots. Les concepts entrent mieux en jouant."],["Grille Situations réelles","Fais la grille des situations : chaque indice est un réflexe à avoir en salon."]],
  ai:[["Générer une légende","Demande à l'assistante une légende pour le post du jour et coupe ce qui ne sonne pas comme toi."],["Rédiger 7 Stories","Demande 7 idées de Stories pour la semaine et copie-les dans tes notes."]]};
-const SECTION_NAMES={start:"Commencer ici",frameworks:"Cadres",brand:"Kit de marque",social:"Réseaux sociaux",ideas:"Banque d'idées",visibility:"Visibilité",calendar:"Calendrier",commerce:"Commercialisation",ai:"Assistante IA"};
+const SECTION_NAMES={start:"Commencer ici",frameworks:"Cadres",brand:"Kit de marque",social:"Réseaux sociaux",ideas:"Banque d'idées",visibility:"Visibilité",calendar:"Calendrier",commerce:"Commercialisation",game:"Mots croisés",ai:"Assistante IA"};
 function dayKey(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
 function seeded(seed){let s=seed;return()=>{s=(s*9301+49297)%233280;return s/233280}}
 function buildToday(force){
@@ -773,75 +827,75 @@ buildToday(false);
 
 /* ---------- banque d'idées ---------- */
 const IDEAS=[
-["Reel avant/après avec révélation flash d'une seconde","Filme le « avant » en image fixe, puis la révélation avec une coupe nette sur le temps. Ajoute nom du service et prix à l'écran.","Notoriété","Tous","Instagram","Gratuit"],
-["POV : ton premier rendez-vous","Parcours de la porte au fauteuil au miroir. Rassure les nerveuses.","Réservations","Tous","TikTok","Gratuit"],
-["Mardi/mercredi 15 % de rabais","Remplir les jours creux. Promu seulement dimanche et lundi pour créer la rareté.","Réservations","Tous","Instagram","Faible"],
-["QR d'avis sur le miroir","La cliente le voit en admirant le résultat. Moment de plus forte intention pour demander un avis.","Avis","Tous","En salon","Faible"],
-["Merci WhatsApp le jour même avec lien d'avis","Envoie dans les 2 heures. Personnel, une ligne, un lien.","Avis","Tous","WhatsApp","Gratuit"],
-["Parrainage : 15 $ pour chacune","Carte remise à la caisse avec un code ou juste son prénom. Suivi dans les notes de réservation.","Parrainage","Tous","En salon","Faible"],
-["Étiquette « ce que j'ai vraiment utilisé »","Termine chaque post avec les 2 ou 3 produits utilisés. Vend la boutique, bâtit l'autorité.","Fidélisation","Tous","Instagram","Gratuit"],
-["Tutoriel retrait de tresses et soin du cuir chevelu","Éducation pour clientes aux cheveux texturés. Positionne le salon comme soin d'abord.","Notoriété","Coiffure","TikTok","Gratuit"],
-["Un gel qui tient : 5 choses qui ruinent ta manucure","Carrousel ou Reel face caméra qui démonte les mythes.","Notoriété","Ongles","Instagram","Gratuit"],
-["Quiz type de peau en Stories","Série de sondages qui finit par « envoie-nous ton résultat en DM pour une recommandation de soin ».","Réservations","Peau","Instagram","Gratuit"],
-["Forfait reset de 90 minutes","Soin du visage + manucure + massage de 20 min avec petit rabais. Vends la sensation, pas la liste.","Réservations","Spa","Instagram","Gratuit"],
-["Abonnement mensuel","Club brushing, club soin ou club manucure. Payé d'avance, réservation prioritaire.","Fidélisation","Tous","En salon","Gratuit"],
-["Cadeau du mois d'anniversaire","Option gratuite pendant le mois d'anniversaire. Demande de collecter les dates à l'accueil.","Fidélisation","Tous","WhatsApp","Faible"],
-["Script de re-réservation au fauteuil","« Je te garde ta place dans 6 semaines ? » La fidélisation double quand on demande en personne.","Fidélisation","Tous","En salon","Gratuit"],
-["Journée prise de contrôle par une coiffeuse","Une coiffeuse gère les Stories une journée : sa musique, ses conseils, ses clientes. Les gens réservent des personnes.","Notoriété","Tous","Instagram","Gratuit"],
-["Lancement forfait mariée (jan à mars)","Essai + jour J + tarif demoiselles d'honneur. Partenariat photographe pour le shooting.","Réservations","Tous","Instagram","Moyen"],
-["Visite d'une micro-influenceuse locale","Service offert à une créatrice de 2 000 à 20 000 abonnés locaux contre du contenu honnête.","Notoriété","Tous","Local","Moyen"],
-["Promo croisée gym / boutique","Laisse des bons de 10 $ dans un gym voisin ; ils laissent les leurs chez toi.","Notoriété","Tous","Local","Faible"],
-["Flyer condo avec offre première visite","Les nouvelles résidentes ont besoin d'un salon. Cible les immeubles à distance de marche.","Réservations","Tous","Local","Faible"],
-["Photo Google hebdomadaire","Une photo de résultat par semaine garde la fiche « fraîche » pour le classement.","Notoriété","Tous","Google","Gratuit"],
-["Amorcer les Questions-réponses Google","Ajoute 5 questions courantes et réponds-y toi-même (stationnement, sans rendez-vous, enfants, prix).","Réservations","Tous","Google","Gratuit"],
-["Avis en visuel chaque mois","Transforme les 3 meilleurs avis en visuels de marque. Preuve sociale sur la grille.","Avis","Tous","Instagram","Gratuit"],
-["Timelapse d'une couleur complète","Trois heures accélérées en 20 secondes ; finis sur la révélation.","Notoriété","Coiffure","TikTok","Gratuit"],
-["Nail art de la semaine","Un design mis en avant chaque lundi ; les clientes réservent « le design du lundi ».","Réservations","Ongles","Instagram","Gratuit"],
-["Clip spa ASMR","Serviette chaude, huile, silence. Pas de parole. Temps de visionnage étonnamment élevé.","Notoriété","Spa","TikTok","Gratuit"],
-["« Ce que je ne ferais jamais à ma peau » face caméra","Esthéticienne à l'écran, 3 opinions rapides. Contenu d'autorité.","Notoriété","Peau","TikTok","Gratuit"],
-["Compilation de réactions clientes","Avec consentement uniquement. Vraies réactions aux révélations montées en musique.","Notoriété","Tous","Instagram","Gratuit"],
-["Alerte créneau libre en Story","« Une place jeudi 14 h, écris-nous pour la prendre. » Crée l'urgence, comble les trous.","Réservations","Tous","Instagram","Gratuit"],
-["Poussée cartes-cadeaux (nov, fév, mai)","Conçois une carte numérique ; promeus-la 3 semaines avant chaque fête.","Réservations","Tous","Instagram","Faible"],
-["Mercredi étudiant","Carte étudiante = tarif fixe. Publie près des campus et dans les groupes étudiants.","Réservations","Tous","Local","Gratuit"],
-["Heure soins pour hommes","Bloc horaire dédié avec menu simple. Sous-servi dans beaucoup de salons.","Réservations","Coiffure","Instagram","Gratuit"],
-["Dimanche mère-fille","Deux services, un prix. Excellent contenu photo avec consentement.","Réservations","Tous","Instagram","Gratuit"],
-["Carte de soins avec QR","Carte imprimée : comment entretenir la coiffure, le lien d'avis, le lien de réservation.","Fidélisation","Tous","En salon","Faible"],
-["Boîte « Demande à la coiffeuse » en Story","Questions-réponses hebdo ; enregistre les réponses dans une Story à la une. Éducation infinie.","Notoriété","Tous","Instagram","Gratuit"],
-["Vlog journée type","Ouverture, première cliente, dîner, fermeture. Humanise la marque.","Notoriété","Tous","TikTok","Gratuit"],
-["Post transparence des prix","« Ce que 60 $ / 120 $ / 200 $ t'offrent ici. » Enlève la plus grande peur avant de réserver.","Réservations","Tous","Instagram","Gratuit"],
-["Série par type de cheveux","Un Reel par type montrant ce que tu recommandes. Signale l'expertise.","Notoriété","Coiffure","Instagram","Gratuit"],
-["Bar à tresses éphémère au marché","Styles simples, rapides, flyers et QR en main.","Notoriété","Coiffure","Local","Moyen"],
-["Démo mini-soin dans une boutique","Démos de 15 minutes à l'événement d'un partenaire ; collecte les numéros pour une offre de suivi.","Réservations","Peau","Local","Faible"],
-["Carte de fidélité à tampons","Le 6e service à moitié prix. Physique ou via l'app de réservation.","Fidélisation","Tous","En salon","Faible"],
-["Message de reconquête à 10 semaines","« Tu nous manques. Voici 10 $ ce mois-ci. » À toute cliente qui n'est pas revenue.","Fidélisation","Tous","WhatsApp","Gratuit"],
-["Liste clientes avec consentement","Collecte nom, téléphone, service, anniversaire, consentement aux messages à chaque accueil.","Fidélisation","Tous","En salon","Gratuit"],
-["Infolettre mensuelle (SMS ou courriel)","Nouveaux services, un conseil, une offre, créneaux libres. Court.","Fidélisation","Tous","Courriel/SMS","Gratuit"],
-["Son tendance, version salon","Prends le son de la semaine et applique-le à une révélation. Surfe l'algorithme.","Notoriété","Tous","TikTok","Gratuit"],
-["Duo sur un mythe beauté","Réponds à une vidéo virale de mauvais conseil avec une correction calme.","Notoriété","Peau","TikTok","Gratuit"],
-["Coin selfie","Bonne lumière, plante, miroir, petit logo. Les clientes publient pour toi.","Parrainage","Tous","En salon","Moyen"],
-["Identifie-nous pour gagner, chaque mois","Les clientes qui publient et identifient participent à un tirage. Machine à contenu client.","Parrainage","Tous","Instagram","Faible"],
-["Lancement saison pédicure (mai)","Campagne « prête pour les sandales », forfait gel orteils + massage des pieds.","Réservations","Ongles","Instagram","Gratuit"],
-["Clinique peau sèche d'hiver (jan)","Soin + plan d'hydratation maison ; Reels éducatifs en amont.","Réservations","Peau","Instagram","Gratuit"],
-["Ouverture des réservations glam des fêtes (nov)","Annonce tôt les créneaux de saison ; tarifs soirée premium.","Réservations","Tous","Instagram","Gratuit"],
-["Pub Meta : meilleur Reel + offre première visite","5 à 10 $/jour, rayon 5 km, femmes 22 à 50, 7 jours, mesure clics et réservations.","Réservations","Tous","Instagram","Moyen"],
-["Publication offre Google Business","Une offre mensuelle sur la fiche apparaît directement dans les résultats.","Réservations","Tous","Google","Gratuit"],
-["Partenariat communautaire","Église, association culturelle ou groupe de nouveaux arrivants : rabais membres et mention dans leur infolettre.","Notoriété","Tous","Local","Gratuit"],
-["Direct Q&R avec une spécialiste","Live Instagram de 30 minutes sur les locs, l'acné ou la santé des ongles. Enregistre en Story à la une.","Notoriété","Tous","Instagram","Gratuit"],
-["Carrousel portrait d'équipe","Photo, spécialité, service préféré, anecdote, comment réserver avec elle.","Réservations","Tous","Instagram","Gratuit"],
-["Avant/après avec les mots de la cliente","Superpose une citation d'une ligne de la cliente sur la photo de révélation.","Avis","Tous","Instagram","Gratuit"],
-["Commanditer une équipe ou un événement local","Un peu d'argent ou des cartes-cadeaux pour une école ; logo sur le flyer, histoire sur ta grille.","Notoriété","Tous","Local","Moyen"],
-["Soirée spa pour deux","Forfait couple ou amies le vendredi. Pousse avant la Saint-Valentin et les longs week-ends.","Réservations","Spa","Instagram","Gratuit"],
-["Étagère « choix de l'équipe »","Trois produits avec notes manuscrites. Un par semaine en Story.","Fidélisation","Tous","En salon","Faible"],
-["Atelier : entretenir sa coiffure à la maison","Petite classe payante ; les participantes deviennent clientes et contenu.","Réservations","Coiffure","En salon","Faible"],
+["Reel avant/après avec révélation flash d'une seconde","Filme le « avant » en image fixe, puis la révélation avec une coupe nette sur le temps. Ajoute nom du service et prix à l'écran.","Notoriété","Tous","Instagram","Gratuit","Aujourd'hui, 10 min : filme le prochain « avant » en photo fixe et la révélation en 3 secondes. Monte ce soir dans CapCut avec une coupe sur le temps."],
+["POV : ton premier rendez-vous","Parcours de la porte au fauteuil au miroir. Rassure les nerveuses.","Réservations","Tous","TikTok","Gratuit","Aujourd'hui, 5 min : filme ton entrée, le fauteuil et le miroir en un seul plan, sans parler. Publie avec la légende « POV : ta première fois ici »."],
+["Mardi/mercredi 15 % de rabais","Remplir les jours creux. Promu seulement dimanche et lundi pour créer la rareté.","Réservations","Tous","Instagram","Faible","Dimanche, 15 min : une Story avec compte à rebours « Mardi -15 % avant 14 h ». Ouvre les créneaux dans ton outil de réservation."],
+["QR d'avis sur le miroir","La cliente le voit en admirant le résultat. Moment de plus forte intention pour demander un avis.","Avis","Tous","En salon","Faible","Aujourd'hui, 15 min : génère ton lien d'avis Google, fais-en un QR gratuit (qr-code-generator ou Canva), imprime, colle sur le miroir."],
+["Merci WhatsApp le jour même avec lien d'avis","Envoie dans les 2 heures. Personnel, une ligne, un lien.","Avis","Tous","WhatsApp","Gratuit","Aujourd'hui : enregistre ce message en réponse rapide WhatsApp : « Merci pour ta visite ! Si tu as aimé, un avis nous aide énormément : [lien] ». Envoie-le à ta dernière cliente."],
+["Parrainage : 15 $ pour chacune","Carte remise à la caisse avec un code ou juste son prénom. Suivi dans les notes de réservation.","Parrainage","Tous","En salon","Faible","Cette semaine : imprime 50 cartes « Amène une amie, 15 $ pour chacune ». Note le prénom de la marraine dans la fiche de réservation."],
+["Étiquette « ce que j'ai vraiment utilisé »","Termine chaque post avec les 2 ou 3 produits utilisés. Vend la boutique, bâtit l'autorité.","Fidélisation","Tous","Instagram","Gratuit","Aujourd'hui : dans ton prochain post, ajoute une dernière ligne « Utilisé : [produit 1], [produit 2] ». Mets ces produits en vente près du miroir."],
+["Tutoriel retrait de tresses et soin du cuir chevelu","Éducation pour clientes aux cheveux texturés. Positionne le salon comme soin d'abord.","Notoriété","Coiffure","TikTok","Gratuit","Prochain retrait de tresses : filme 30 secondes du retrait et du massage du cuir chevelu. Voix off : 3 conseils. Publie sur TikTok."],
+["Un gel qui tient : 5 choses qui ruinent ta manucure","Carrousel ou Reel face caméra qui démonte les mythes.","Notoriété","Ongles","Instagram","Gratuit","Aujourd'hui, 20 min : carrousel Canva de 6 pages « 5 choses qui ruinent ton gel ». Une erreur par page, ta solution en dernière page."],
+["Quiz type de peau en Stories","Série de sondages qui finit par « envoie-nous ton résultat en DM pour une recommandation de soin ».","Réservations","Peau","Instagram","Gratuit","Ce soir : 4 Stories sondage (peau qui tire ? brille ? rougit ? les deux ?). Dernière Story : « Envoie-moi ton résultat, je te dis quel soin »."],
+["Forfait reset de 90 minutes","Soin du visage + manucure + massage de 20 min avec petit rabais. Vends la sensation, pas la liste.","Réservations","Spa","Instagram","Gratuit","Cette semaine : fixe le prix du forfait (soin + manucure + massage 20 min, -10 %), ajoute-le comme un service dans ton outil de réservation."],
+["Abonnement mensuel","Club brushing, club soin ou club manucure. Payé d'avance, réservation prioritaire.","Fidélisation","Tous","En salon","Gratuit","Ce mois-ci : choisis un service récurrent, fixe le prix mensuel (-15 %), crée un formulaire simple ou une note. Propose-le à 5 habituées."],
+["Cadeau du mois d'anniversaire","Option gratuite pendant le mois d'anniversaire. Demande de collecter les dates à l'accueil.","Fidélisation","Tous","WhatsApp","Faible","Aujourd'hui : ajoute « Date d'anniversaire » à ta fiche d'accueil. Chaque début de mois, envoie un message aux clientes du mois."],
+["Script de re-réservation au fauteuil","« Je te garde ta place dans 6 semaines ? » La fidélisation double quand on demande en personne.","Fidélisation","Tous","En salon","Gratuit","Aujourd'hui : dis à chaque cliente avant l'au revoir : « Je te garde ta place dans six semaines ? ». Compte combien disent oui."],
+["Journée prise de contrôle par une coiffeuse","Une coiffeuse gère les Stories une journée : sa musique, ses conseils, ses clientes. Les gens réservent des personnes.","Notoriété","Tous","Instagram","Gratuit","Cette semaine : choisis une coiffeuse, donne-lui le téléphone du salon une journée. Consigne : 5 Stories, ses mots, ses clientes (avec consentement)."],
+["Lancement forfait mariée (jan à mars)","Essai + jour J + tarif demoiselles d'honneur. Partenariat photographe pour le shooting.","Réservations","Tous","Instagram","Moyen","Janvier : crée le forfait (essai + jour J), une page ou un post dédié, et écris à 2 photographes de mariage du coin pour un partenariat."],
+["Visite d'une micro-influenceuse locale","Service offert à une créatrice de 2 000 à 20 000 abonnés locaux contre du contenu honnête.","Notoriété","Tous","Local","Moyen","Cette semaine : cherche sur Instagram 5 créatrices locales (2 000 à 20 000 abonnés). Écris-leur en DM : service offert contre un post honnête."],
+["Promo croisée gym / boutique","Laisse des bons de 10 $ dans un gym voisin ; ils laissent les leurs chez toi.","Notoriété","Tous","Local","Faible","Cette semaine : imprime 30 bons de 10 $, va voir le gym ou la boutique à côté avec les tiens, propose l'échange."],
+["Flyer condo avec offre première visite","Les nouvelles résidentes ont besoin d'un salon. Cible les immeubles à distance de marche.","Réservations","Tous","Local","Faible","Cette semaine : flyer Canva avec offre première visite + QR. Imprime 100, dépose dans les halls des immeubles à moins de 10 minutes à pied."],
+["Photo Google hebdomadaire","Une photo de résultat par semaine garde la fiche « fraîche » pour le classement.","Notoriété","Tous","Google","Gratuit","Chaque lundi, 3 min : ouvre l'app Google Business, ajoute la meilleure photo de résultat de la semaine passée."],
+["Amorcer les Questions-réponses Google","Ajoute 5 questions courantes et réponds-y toi-même (stationnement, sans rendez-vous, enfants, prix).","Réservations","Tous","Google","Gratuit","Aujourd'hui, 15 min : sur ta fiche Google, section Questions, écris et réponds à : stationnement, sans rendez-vous, enfants, prix, paiement."],
+["Avis en visuel chaque mois","Transforme les 3 meilleurs avis en visuels de marque. Preuve sociale sur la grille.","Avis","Tous","Instagram","Gratuit","Fin de mois, 20 min : copie tes 3 meilleurs avis dans un modèle Canva aux couleurs du salon. Publie-les en carrousel."],
+["Timelapse d'une couleur complète","Trois heures accélérées en 20 secondes ; finis sur la révélation.","Notoriété","Coiffure","TikTok","Gratuit","Prochaine couleur : pose le téléphone sur un trépied, mode timelapse, laisse tourner. Coupe à 20 secondes, finis sur la révélation."],
+["Nail art de la semaine","Un design mis en avant chaque lundi ; les clientes réservent « le design du lundi ».","Réservations","Ongles","Instagram","Gratuit","Chaque lundi : photo macro d'un design, légende « Design du lundi, réserve-le cette semaine ». Ajoute-le comme option dans la réservation."],
+["Clip spa ASMR","Serviette chaude, huile, silence. Pas de parole. Temps de visionnage étonnamment élevé.","Notoriété","Spa","TikTok","Gratuit","Prochain massage : filme 20 secondes de serviette chaude et d'huile, sans parler, son ambiant seulement. Publie tel quel."],
+["« Ce que je ne ferais jamais à ma peau » face caméra","Esthéticienne à l'écran, 3 opinions rapides. Contenu d'autorité.","Notoriété","Peau","TikTok","Gratuit","Cette semaine : filme ton esthéticienne face caméra, 3 phrases qui commencent par « Je ne ferais jamais… ». Sous-titres activés."],
+["Compilation de réactions clientes","Avec consentement uniquement. Vraies réactions aux révélations montées en musique.","Notoriété","Tous","Instagram","Gratuit","Ce mois-ci : demande à chaque cliente si tu peux filmer sa réaction au miroir. Garde les oui, monte 5 réactions en 15 secondes."],
+["Alerte créneau libre en Story","« Une place jeudi 14 h, écris-nous pour la prendre. » Crée l'urgence, comble les trous.","Réservations","Tous","Instagram","Gratuit","Chaque matin avec un trou dans l'agenda : Story « Une place [jour] [heure], écris-moi ». Ferme la Story dès que c'est pris."],
+["Poussée cartes-cadeaux (nov, fév, mai)","Conçois une carte numérique ; promeus-la 3 semaines avant chaque fête.","Réservations","Tous","Instagram","Faible","3 semaines avant la fête : crée la carte-cadeau dans ton outil de réservation ou Square, un visuel Canva, une Story par semaine."],
+["Mercredi étudiant","Carte étudiante = tarif fixe. Publie près des campus et dans les groupes étudiants.","Réservations","Tous","Local","Gratuit","Cette semaine : fixe un tarif étudiant du mercredi, publie dans 2 groupes Facebook étudiants du coin et sur le babillard du campus."],
+["Heure soins pour hommes","Bloc horaire dédié avec menu simple. Sous-servi dans beaucoup de salons.","Réservations","Coiffure","Instagram","Gratuit","Cette semaine : bloque 2 heures le jeudi soir « heure hommes », menu de 3 services à prix fixe. Un post dédié avec une photo de client."],
+["Dimanche mère-fille","Deux services, un prix. Excellent contenu photo avec consentement.","Réservations","Tous","Instagram","Gratuit","Ce mois-ci : crée le forfait mère-fille du dimanche dans ta réservation. Une photo des deux (avec consentement) fait le post suivant."],
+["Carte de soins avec QR","Carte imprimée : comment entretenir la coiffure, le lien d'avis, le lien de réservation.","Fidélisation","Tous","En salon","Faible","Cette semaine : carte recto-verso Canva (soins d'entretien / QR avis + QR réservation). Imprime 100, une dans chaque sac de sortie."],
+["Boîte « Demande à la coiffeuse » en Story","Questions-réponses hebdo ; enregistre les réponses dans une Story à la une. Éducation infinie.","Notoriété","Tous","Instagram","Gratuit","Chaque jeudi : Story avec l'autocollant question « Demande à ta coiffeuse ». Réponds le vendredi, enregistre dans une Story à la une « Conseils »."],
+["Vlog journée type","Ouverture, première cliente, dîner, fermeture. Humanise la marque.","Notoriété","Tous","TikTok","Gratuit","Cette semaine : filme 5 clips de 5 secondes (ouverture, première cliente, dîner, produit, fermeture). Monte avec une musique calme."],
+["Post transparence des prix","« Ce que 60 $ / 120 $ / 200 $ t'offrent ici. » Enlève la plus grande peur avant de réserver.","Réservations","Tous","Instagram","Gratuit","Aujourd'hui : carrousel 3 pages « 60 $ / 120 $ / 200 $ : ce que tu obtiens ». Une photo de résultat par palier."],
+["Série par type de cheveux","Un Reel par type montrant ce que tu recommandes. Signale l'expertise.","Notoriété","Coiffure","Instagram","Gratuit","Ce mois-ci : un Reel par type de cheveux (4 en tout), même format : « Type [X] : ce que je recommande ». Sauvegarde dans une Story à la une."],
+["Bar à tresses éphémère au marché","Styles simples, rapides, flyers et QR en main.","Notoriété","Coiffure","Local","Moyen","Ce mois-ci : demande la liste des marchés de quartier à la ville, réserve une table, prévois 2 styles rapides, flyers et QR."],
+["Démo mini-soin dans une boutique","Démos de 15 minutes à l'événement d'un partenaire ; collecte les numéros pour une offre de suivi.","Réservations","Peau","Local","Faible","Cette semaine : propose à une boutique voisine 2 heures de mini-soins gratuits lors de son prochain événement. Collecte les numéros avec consentement."],
+["Carte de fidélité à tampons","Le 6e service à moitié prix. Physique ou via l'app de réservation.","Fidélisation","Tous","En salon","Faible","Cette semaine : carte de fidélité Canva (6 cases), imprime 200, tamponne à chaque visite. Le 6e service à moitié prix."],
+["Message de reconquête à 10 semaines","« Tu nous manques. Voici 10 $ ce mois-ci. » À toute cliente qui n'est pas revenue.","Fidélisation","Tous","WhatsApp","Gratuit","Aujourd'hui, 20 min : dans ta liste, filtre les clientes sans visite depuis 10 semaines. Envoie « Tu nous manques, 10 $ ce mois-ci »."],
+["Liste clientes avec consentement","Collecte nom, téléphone, service, anniversaire, consentement aux messages à chaque accueil.","Fidélisation","Tous","En salon","Gratuit","Aujourd'hui : ajoute à ta fiche d'accueil une case « J'accepte de recevoir des offres par WhatsApp/SMS ». Note dans un tableur."],
+["Infolettre mensuelle (SMS ou courriel)","Nouveaux services, un conseil, une offre, créneaux libres. Court.","Fidélisation","Tous","Courriel/SMS","Gratuit","Le 1er du mois, 20 min : un message WhatsApp à ta liste : une nouveauté, un conseil, une offre, les créneaux libres. 5 lignes maximum."],
+["Son tendance, version salon","Prends le son de la semaine et applique-le à une révélation. Surfe l'algorithme.","Notoriété","Tous","TikTok","Gratuit","Aujourd'hui, 10 min : ouvre TikTok, note le son le plus utilisé cette semaine, colle-le sur ta prochaine révélation."],
+["Duo sur un mythe beauté","Réponds à une vidéo virale de mauvais conseil avec une correction calme.","Notoriété","Peau","TikTok","Gratuit","Cette semaine : trouve une vidéo virale de mauvais conseil beauté, fais un Duo/Stitch avec ta correction en 15 secondes calmes."],
+["Coin selfie","Bonne lumière, plante, miroir, petit logo. Les clientes publient pour toi.","Parrainage","Tous","En salon","Moyen","Ce mois-ci : un mur, une lampe annulaire ou une fenêtre, un miroir, une plante, ton nom en petit. Teste un selfie, ajuste la lumière."],
+["Identifie-nous pour gagner, chaque mois","Les clientes qui publient et identifient participent à un tirage. Machine à contenu client.","Parrainage","Tous","Instagram","Faible","Aujourd'hui : post « Identifie-nous dans ta photo ce mois-ci, tirage d'un soin gratuit le 30 ». Affiche la règle près du miroir."],
+["Lancement saison pédicure (mai)","Campagne « prête pour les sandales », forfait gel orteils + massage des pieds.","Réservations","Ongles","Instagram","Gratuit","Fin avril : forfait « prête pour les sandales » (gel orteils + massage 15 min) dans la réservation, un Reel de pédicure par semaine en mai."],
+["Clinique peau sèche d'hiver (jan)","Soin + plan d'hydratation maison ; Reels éducatifs en amont.","Réservations","Peau","Instagram","Gratuit","Début janvier : forfait « clinique peau sèche » (soin + plan maison), 3 Reels éducatifs sur la peau qui tire avant le lancement."],
+["Ouverture des réservations glam des fêtes (nov)","Annonce tôt les créneaux de saison ; tarifs soirée premium.","Réservations","Tous","Instagram","Gratuit","1er novembre : ouvre les créneaux des fêtes dans ta réservation, tarif soirée. Story « Les places des fêtes sont ouvertes »."],
+["Pub Meta : meilleur Reel + offre première visite","5 à 10 $/jour, rayon 5 km, femmes 22 à 50, 7 jours, mesure clics et réservations.","Réservations","Tous","Instagram","Moyen","Cette semaine : dans Meta Business Suite, promeus ton Reel le plus vu, 7 $/jour, 7 jours, rayon 5 km. Note les clics de réservation avant/après."],
+["Publication offre Google Business","Une offre mensuelle sur la fiche apparaît directement dans les résultats.","Réservations","Tous","Google","Gratuit","Le 1er du mois, 5 min : app Google Business, « Ajouter une offre », titre, dates, code. Ça apparaît directement dans Google."],
+["Partenariat communautaire","Église, association culturelle ou groupe de nouveaux arrivants : rabais membres et mention dans leur infolettre.","Notoriété","Tous","Local","Gratuit","Cette semaine : écris à une association ou église du coin : 10 % pour les membres, en échange d'une mention dans leur infolettre."],
+["Direct Q&R avec une spécialiste","Live Instagram de 30 minutes sur les locs, l'acné ou la santé des ongles. Enregistre en Story à la une.","Notoriété","Tous","Instagram","Gratuit","Ce mois-ci : annonce un Live Instagram de 30 minutes sur un sujet (locs, acné, ongles). Prépare 5 questions à l'avance."],
+["Carrousel portrait d'équipe","Photo, spécialité, service préféré, anecdote, comment réserver avec elle.","Réservations","Tous","Instagram","Gratuit","Cette semaine : photo de chaque membre de l'équipe, 4 lignes chacune, un carrousel. Termine par « Réserve avec [prénom] via le lien en bio »."],
+["Avant/après avec les mots de la cliente","Superpose une citation d'une ligne de la cliente sur la photo de révélation.","Avis","Tous","Instagram","Gratuit","Prochaine cliente ravie : demande une phrase sur ce qu'elle ressent. Écris-la sur la photo de révélation."],
+["Commanditer une équipe ou un événement local","Un peu d'argent ou des cartes-cadeaux pour une école ; logo sur le flyer, histoire sur ta grille.","Notoriété","Tous","Local","Moyen","Ce trimestre : offre 2 cartes-cadeaux à une école ou équipe locale pour leur tirage. Demande ton logo sur leur flyer."],
+["Soirée spa pour deux","Forfait couple ou amies le vendredi. Pousse avant la Saint-Valentin et les longs week-ends.","Réservations","Spa","Instagram","Gratuit","3 semaines avant la Saint-Valentin : forfait pour deux le vendredi soir dans la réservation, un visuel, une Story par semaine."],
+["Étagère « choix de l'équipe »","Trois produits avec notes manuscrites. Un par semaine en Story.","Fidélisation","Tous","En salon","Faible","Cette semaine : choisis 3 produits, écris une note manuscrite pour chacun, place-les près du miroir. Un en Story chaque semaine."],
+["Atelier : entretenir sa coiffure à la maison","Petite classe payante ; les participantes deviennent clientes et contenu.","Réservations","Coiffure","En salon","Faible","Ce trimestre : choisis une date, 6 places, 25 $ chacune, une heure, sujet « entretenir ta coiffure à la maison ». Filme pour du contenu."],
 ];
 const list=document.getElementById('ideaList');
 function filtered(){const g=v('f-goal'),s=v('f-service'),c=v('f-channel'),k=v('f-cost'),t=v('f-text').toLowerCase();
   return IDEAS.filter(i=>(!g||i[2]===g)&&(!s||i[3]===s||i[3]==='Tous')&&(!c||i[4]===c)&&(!k||i[5]===k)&&(!t||(i[0]+i[1]).toLowerCase().includes(t)))}
 function v(id){return document.getElementById(id).value}
 function renderIdeas(){const f=filtered();document.getElementById('ideaCount').textContent=f.length+' idées';
-  list.innerHTML=f.map(i=>`<div class="idea"><b>${i[0]}</b><p>${i[1]}</p><span class="tag">${i[2]}</span><span class="tag sage">${i[3]}</span><span class="tag">${i[4]}</span><span class="tag sage">Coût ${i[5].toLowerCase()}</span></div>`).join('')}
+  list.innerHTML=f.map(i=>`<div class="idea"><b>${i[0]}</b><p>${i[1]}</p><span class="tag">${i[2]}</span><span class="tag sage">${i[3]}</span><span class="tag">${i[4]}</span><span class="tag sage">Coût ${i[5].toLowerCase()}</span><p class="step"><b>Première étape :</b> ${i[6]}</p></div>`).join('')}
 function drawIdea(){const f=filtered();if(!f.length){document.getElementById('drawCard').innerHTML='<h3>Aucune idée ne correspond</h3><p>Desserre les filtres, Marie.</p>';return}
-  const i=f[Math.floor(Math.random()*f.length)];document.getElementById('drawCard').innerHTML=`<h3>${i[0]}</h3><p>${i[1]}</p><span class="tag">${i[2]}</span><span class="tag">${i[3]}</span><span class="tag">${i[4]}</span><span class="tag">Coût ${i[5].toLowerCase()}</span>`}
+  const i=f[Math.floor(Math.random()*f.length)];document.getElementById('drawCard').innerHTML=`<h3>${i[0]}</h3><p>${i[1]}</p><span class="tag">${i[2]}</span><span class="tag">${i[3]}</span><span class="tag">${i[4]}</span><span class="tag">Coût ${i[5].toLowerCase()}</span><p class="step-dark"><b>Première étape :</b> ${i[6]}</p>`}
 ['f-goal','f-service','f-channel','f-cost'].forEach(id=>document.getElementById(id).addEventListener('change',renderIdeas));
 document.getElementById('f-text').addEventListener('input',renderIdeas);renderIdeas();
 
@@ -898,6 +952,197 @@ async function runAI(){const btn=document.getElementById('ai-btn'),out=document.
   catch(e){out.textContent='Impossible de joindre l\'assistante. Vérifie ta connexion, ou laisse la clé vide pour le mode hors ligne.'}
   btn.disabled=false}
 function copyText(id){const t=document.getElementById(id).textContent;navigator.clipboard&&navigator.clipboard.writeText(t)}
+
+
+/* ---------- mots croisés ---------- */
+const XW_THEMES={
+ "Cadres stratégiques":[
+  ["SOSTAC","Plan en six étapes : Situation, Objectifs, Stratégie, Tactiques, Action, Contrôle"],
+  ["SWOT","Forces, faiblesses, opportunités, menaces"],
+  ["AIDA","Attention, Intérêt, Désir, Action : la structure d'un post qui vend"],
+  ["RACE","Reach, Act, Convert, Engage : un rôle par canal"],
+  ["SMART","Un objectif spécifique, mesurable, atteignable, réaliste et temporel"],
+  ["PERSONA","Portrait d'une cliente type : âge, peurs, où elle scrolle"],
+  ["PILIER","Thème récurrent dans lequel tu as toujours quelque chose à publier"],
+  ["SEGMENT","Groupe de clientes aux besoins semblables"],
+  ["ARCHETYPE","Personnalité de marque : Soignante, Magicienne, Voisine…"],
+  ["RETENTION","Métrique reine du salon : elles reviennent sous 8 semaines"],
+  ["PARCOURS","Carte des étapes de la cliente, de Découvrir à Revenir"],
+  ["MENACE","Une chaîne de salons qui ouvre à côté, dans le SWOT"],
+  ["TACTIQUE","Le « concrètement quoi » du plan : 4 Reels, remise du mardi"],
+  ["CONTROLE","Dernière étape de SOSTAC : comment on sait que ça marche"],
+  ["POSITIONNEMENT","La place que le salon occupe dans l'esprit de la cliente"],
+  ["NORD","Étoile du ___ : le pourcentage de premières visites qui re-réservent"],
+  ["VANITE","Abonnés et likes : métriques de ___"],
+ ],
+ "Kit de marque":[
+  ["PROMESSE","Une marque, c'est une ___ tenue avec constance, pas un logo"],
+  ["SLOGAN","Phrase de moins de 8 mots sous le nom du salon"],
+  ["VOIX","Ton de la marque, en trois mots"],
+  ["SOIGNANTE","Archétype des bonnes mains et du cuir chevelu d'abord"],
+  ["MAGICIENNE","Archétype de la transformation : entrée fatiguée, sortie main character"],
+  ["VOISINE","Archétype du quartier : « viens comme tu es, on a du thé »"],
+  ["SIGNATURE","Le service pour lequel on est connues, nommé et packagé"],
+  ["PREUVE","Ce qui rend différent : des ___, pas des adjectifs"],
+  ["COHERENCE","Même nom, même logo, même identifiant partout"],
+  ["ACCENT","Deux couleurs de marque et un ___"],
+  ["SELFIE","Le coin ___ : bonne lumière, plante, miroir, petit logo"],
+  ["MENU","Liste des prix, conçue, à jour et publiée en ligne"],
+  ["BIO","Qui on sert + ce qu'on fait + où + lien : la formule de la ___"],
+  ["CANVA","Outil gratuit où vivent tes polices et couleurs"],
+  ["EQUIPE","Les personnes sont la marque : bios et photos de l'___"],
+  ["RITUEL","Mot à utiliser plutôt que « prestation » quand on vend une expérience"],
+ ],
+ "Réseaux sociaux":[
+  ["REEL","Format vidéo vertical qui donne la portée sur Instagram"],
+  ["TIKTOK","Moteur de découverte : grande portée organique, contenu local favorisé"],
+  ["ACCROCHE","Les 2 premières secondes qui retiennent le pouce"],
+  ["HASHTAG","Trois locaux, trois services, deux niche"],
+  ["CONSENTEMENT","Indispensable, écrit ou enregistré, avant de filmer une cliente"],
+  ["LEGENDE","Texte sous le post : accroche, ce qui a été fait, conseil, appel à l'action"],
+  ["CARROUSEL","Post à plusieurs pages pour les conseils, la FAQ, les prix"],
+  ["STORY","Format quotidien : disponibilités, coulisses, sondages"],
+  ["POV","« ___ : c'est ta première fois au salon »"],
+  ["TIMELAPSE","Trois heures de couleur en vingt secondes"],
+  ["CAPCUT","Application de montage gratuite pour tes Reels"],
+  ["LUNDI","Jour de tournage du système hebdo"],
+  ["TREPIED","Petit accessoire qui tient le téléphone pendant que tu travailles"],
+  ["ENGAGEMENT","(Likes + commentaires + enregistrements + partages) ÷ portée"],
+  ["PORTEE","Nombre de personnes uniques qui ont vu le post"],
+  ["MAINS","Sans oui clair pour le visage, filme plutôt les ___, les cheveux, les ongles"],
+  ["HEURE","Délai maximal pour répondre à un commentaire ou un DM"],
+  ["ACHETER","Ce qu'il ne faut jamais faire avec des abonnés"],
+  ["MYTHE","Contenu éducatif qui démonte un ___ beauté"],
+ ],
+ "Visibilité locale":[
+  ["GOOGLE","La fiche ___ Business Profile : là où finissent les recherches locales"],
+  ["AVIS","Trois à cinq nouveaux par semaine, demandés le jour même"],
+  ["NAP","Nom, Adresse, Téléphone identiques partout"],
+  ["QR","Code collé sur le miroir pour obtenir un avis au bon moment"],
+  ["FRESHA","Plateforme de réservation gratuite pour salons (comme Booksy)"],
+  ["WHATSAPP","Messagerie pour les rappels, les offres et le merci du jour même"],
+  ["FLYER","Papier avec offre première visite déposé dans les halls des condos"],
+  ["PARTENARIAT","Échange de bons avec le gym ou la boutique d'à côté"],
+  ["SEO","Référencement : apparaître dans « près de moi »"],
+  ["QUESTIONS","Section Google à amorcer toi-même : stationnement, enfants, prix"],
+  ["PHOTO","Une par semaine sur la fiche Google pour rester « fraîche »"],
+  ["VITRINE","Enseigne et ___ avec identifiant et QR pour réserver"],
+  ["MARCHE","Bar à tresses éphémère au ___ du quartier"],
+  ["YELP","Annuaire d'avis où le salon doit aussi être listé"],
+  ["CALME","Un avis à une étoile : tu réponds ___, sous 24 h, sans excuses"],
+  ["MIROIR","Meilleur endroit du salon pour le code QR d'avis"],
+  ["EGLISE","Communauté locale à approcher avec un rabais membres"],
+ ],
+ "Commercialisation":[
+  ["ABONNEMENT","Club mensuel payé d'avance, 10 à 15 % moins cher"],
+  ["FORFAIT","Deux ou trois services, un prix, vendus comme une expérience"],
+  ["CADEAU","Carte-___ : à pousser en novembre, février et mai"],
+  ["ANCRAGE","Montrer une option premium pour que le milieu paraisse raisonnable"],
+  ["LTV","Dépense par visite × visites par an × années"],
+  ["CAC","Dépenses marketing ÷ nouvelles clientes"],
+  ["MARGE","40 à 50 % sur les produits en boutique"],
+  ["ATELIER","Petite classe payante qui produit des clientes et du contenu"],
+  ["CREUX","Tarif heures ___ : mardi, mercredi, matinées"],
+  ["FIDELITE","Carte à tampons : le sixième service à moitié prix"],
+  ["PARRAINAGE","Amène une amie, 15 $ pour chacune"],
+  ["FAUTEUIL","Location de ___ : une artiste invitée par mois, revenus partagés"],
+  ["ESSENTIEL","Premier niveau de l'échelle de prix"],
+  ["APPEL","Produit d'___ : service peu cher pour faire entrer les gens"],
+  ["AJOUT","« On ___e un soin du cuir chevelu, quinze minutes ? »"],
+  ["TROIS","Nombre de produits à mettre près du miroir, pas plus"],
+  ["RECONQUETE","Message de ___ à 10 semaines sans visite"],
+  ["PRIORITE","Avantage de l'abonnée : réservation en ___"],
+ ],
+ "Situations réelles":[
+  ["AVIS","Cliente ravie devant le miroir : c'est le moment de demander un ___"],
+  ["RESERVER","Avant l'au revoir : « je te garde ta place dans six semaines ? » c'est faire ___"],
+  ["CONSENTEMENT","Tu veux filmer la révélation d'une cliente. Il te faut d'abord son ___"],
+  ["CALME","Avis négatif ce matin : tu réponds sous 24 h, ___, et proposes un contact hors ligne"],
+  ["CREUX","Mardi vide : tu lances un tarif heures ___ promu dimanche et lundi"],
+  ["STORY","Une place se libère jeudi 14 h : tu publies une ___ « écris-moi »"],
+  ["LIEN","Une cliente demande comment réserver en DM : tu envoies le ___ de réservation, pas une conversation"],
+  ["JOURNAL","Post sans appel à l'action : c'est un ___ intime, pas du marketing"],
+  ["MENACE","Une chaîne ouvre au coin de la rue : dans ton SWOT, c'est une ___"],
+  ["RECONQUETE","Une habituée n'est pas revenue depuis dix semaines : message de ___ avec 10 $"],
+  ["VANITE","Cinq cents nouveaux abonnés mais zéro réservation : métriques de ___"],
+  ["ORGANIQUE","Avant de payer une pub, tu promeus le Reel qui a déjà marché en ___"],
+  ["PRODUIT","Cliente adore le résultat : tu montres le ___ que tu viens d'utiliser"],
+  ["TAMPON","Sixième visite d'une habituée : tu poses le dernier ___ sur sa carte"],
+  ["PHOTO","Lundi matin, trois minutes : tu ajoutes une ___ sur la fiche Google"],
+  ["NOVEMBRE","Les cartes-cadeaux des fêtes se lancent en ___"],
+  ["NUMERO","Les abonnés peuvent disparaître ; tu gardes le ___ de téléphone de chaque cliente"],
+  ["COUPER","Deux pubs testées 7 jours : tu dois ___ la perdante"],
+ ]};
+const XW_SIZE=15;let xw={};
+function xwSeed(str){let h=2166136261;for(const c of str){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return()=>{h+=0x6D2B79F5;let t=Math.imul(h^h>>>15,1|h);t^=t+Math.imul(t^t>>>7,61|t);return((t^t>>>14)>>>0)/4294967296}}
+function xwBuild(words,rnd){
+  const N=XW_SIZE,g=Array.from({length:N},()=>Array(N).fill(null)),placed=[];
+  const ws=words.slice().sort((a,b)=>b[0].length-a[0].length);
+  // shuffle within similar lengths for variety
+  for(let i=ws.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));if(Math.abs(ws[i][0].length-ws[j][0].length)<=2){[ws[i],ws[j]]=[ws[j],ws[i]]}}
+  function fits(w,r,c,d){const dr=d?1:0,dc=d?0:1;if(r<0||c<0||r+dr*(w.length-1)>=N||c+dc*(w.length-1)>=N)return -1;
+    const pr=r-dr,pc=c-dc,ar=r+dr*w.length,ac=c+dc*w.length;if(pr>=0&&pc>=0&&g[pr][pc])return -1;if(ar<N&&ac<N&&g[ar][ac])return -1;
+    let cross=0;for(let i=0;i<w.length;i++){const rr=r+dr*i,cc=c+dc*i,cell=g[rr][cc];
+      if(cell){if(cell!==w[i])return -1;cross++}else{const n1=d?[rr,cc-1]:[rr-1,cc],n2=d?[rr,cc+1]:[rr+1,cc];
+        if((n1[0]>=0&&n1[1]>=0&&g[n1[0]][n1[1]])||(n2[0]<N&&n2[1]<N&&g[n2[0]][n2[1]]))return -1}}
+    return cross}
+  function put(w,r,c,d,clue){const dr=d?1:0,dc=d?0:1;for(let i=0;i<w.length;i++)g[r+dr*i][c+dc*i]=w[i];placed.push({w,r,c,d,clue})}
+  const first=ws[0];put(first[0],Math.floor(N/2),Math.floor((N-first[0].length)/2),false,first[1]);
+  const rest=ws.slice(1);let progress=true;const left=new Set(rest.map(x=>x[0]));
+  while(progress){progress=false;for(const [w,clue] of rest){if(!left.has(w))continue;let best=null;
+    for(const p of placed){for(let i=0;i<p.w.length;i++){for(let j=0;j<w.length;j++){if(p.w[i]!==w[j])continue;
+      const d=!p.d;const r=p.d?p.r+i:p.r-j,c=p.d?p.c-j:p.c+i;const sc=fits(w,r,c,d);if(sc>0){const score=sc*10+rnd();if(!best||score>best.score)best={r,c,d,score}}}}}
+    if(best){put(w,best.r,best.c,best.d,clue);left.delete(w);progress=true}}}
+  // crop
+  let r0=N,r1=0,c0=N,c1=0;for(const p of placed){r0=Math.min(r0,p.r);c0=Math.min(c0,p.c);r1=Math.max(r1,p.r+(p.d?p.w.length-1:0));c1=Math.max(c1,p.c+(p.d?0:p.w.length-1))}
+  const H=r1-r0+1,W=c1-c0+1,S=Math.max(H,W);const or=Math.floor((S-H)/2),oc=Math.floor((S-W)/2);
+  const grid=Array.from({length:S},()=>Array(S).fill(null));for(const p of placed){p.r+=or-r0;p.c+=oc-c0;for(let i=0;i<p.w.length;i++)grid[p.r+(p.d?i:0)][p.c+(p.d?0:i)]=p.w[i]}
+  // numbering
+  placed.sort((a,b)=>a.r-b.r||a.c-b.c);const nums={};let n=0;for(const p of placed){const k=p.r+','+p.c;if(!nums[k])nums[k]=++n;p.n=nums[k]}
+  return{grid,placed,S,skipped:[...left]}}
+function xwKey(){return 'smt:xw:'+v('g-theme')}
+function newPuzzle(force){const theme=v('g-theme');const seedBase=theme+(force?':'+Date.now():'');
+  let saved=null;try{saved=JSON.parse(sget(xwKey()))}catch(e){}
+  const seed=(!force&&saved&&saved.seed)?saved.seed:seedBase;const rnd=xwSeed(seed);
+  let best=null;for(let t=0;t<12;t++){const b=xwBuild(XW_THEMES[theme],rnd);if(!best||b.placed.length>best.placed.length)best=b}
+  xw={...best,seed,theme,fill:(!force&&saved&&saved.seed===seed&&saved.fill)?saved.fill:{},sel:null,dir:false};
+  if(force)sset(xwKey(),JSON.stringify({seed,fill:{}}));renderXW()}
+function renderXW(){const el=document.getElementById('xw');el.style.gridTemplateColumns=`repeat(${xw.S},1fr)`;el.innerHTML='';
+  for(let r=0;r<xw.S;r++)for(let c=0;c<xw.S;c++){const ch=xw.grid[r][c];const d=document.createElement('div');d.className='c'+(ch?'':' b');
+    if(ch){const k=r+','+c;const p=xw.placed.find(p=>p.r===r&&p.c===c);if(p)d.innerHTML=`<span class="n">${p.n}</span>`;
+      const i=document.createElement('input');i.type='text';i.maxLength=1;i.autocomplete='off';i.inputMode='latin';i.setAttribute('autocapitalize','characters');i.setAttribute('aria-label',`Case ${r+1},${c+1}`);
+      i.value=xw.fill[k]||'';i.dataset.r=r;i.dataset.c=c;
+      i.addEventListener('focus',()=>selectCell(r,c,true));i.addEventListener('input',e=>{const val=(e.target.value||'').toUpperCase().replace(/[^A-Z]/g,'').slice(-1);e.target.value=val;xw.fill[k]=val;saveXW();e.target.parentElement.classList.remove('ok','bad');if(val)moveSel(1);updXWStatus()});
+      i.addEventListener('keydown',e=>{if(e.key==='Backspace'&&!e.target.value){e.preventDefault();moveSel(-1)}else if(e.key.startsWith('Arrow')){e.preventDefault();const m={ArrowUp:[-1,0],ArrowDown:[1,0],ArrowLeft:[0,-1],ArrowRight:[0,1]}[e.key];xw.dir=m[0]!==0;stepTo(r+m[0],c+m[1])}});
+      d.appendChild(i)}
+    el.appendChild(d)}
+  const A=document.getElementById('xw-across'),D=document.getElementById('xw-down');A.innerHTML='';D.innerHTML='';
+  for(const p of xw.placed){const li=document.createElement('li');li.value=p.n;li.textContent=p.clue+` (${p.w.length})`;li.dataset.n=p.n;li.dataset.d=p.d?1:0;li.addEventListener('click',()=>{xw.dir=p.d;selectCell(p.r,p.c,false);const inp=cellInput(p.r,p.c);if(inp)inp.focus()});(p.d?D:A).appendChild(li)}
+  updXWStatus();renderScores()}
+function cellInput(r,c){return document.querySelector(`.xw input[data-r="${r}"][data-c="${c}"]`)}
+function wordAt(r,c,d){return xw.placed.find(p=>p.d===d&&(d?(p.c===c&&r>=p.r&&r<p.r+p.w.length):(p.r===r&&c>=p.c&&c<p.c+p.w.length)))}
+function selectCell(r,c,fromFocus){if(xw.sel&&xw.sel[0]===r&&xw.sel[1]===c&&fromFocus){xw.dir=!xw.dir;if(!wordAt(r,c,xw.dir))xw.dir=!xw.dir}
+  else if(!wordAt(r,c,xw.dir))xw.dir=!xw.dir;xw.sel=[r,c];
+  document.querySelectorAll('.xw .c').forEach(x=>x.classList.remove('hl','act'));document.querySelectorAll('.xw-clues li').forEach(x=>x.classList.remove('act'));
+  const w=wordAt(r,c,xw.dir);if(!w)return;for(let i=0;i<w.w.length;i++){const inp=cellInput(w.r+(w.d?i:0),w.c+(w.d?0:i));if(inp)inp.parentElement.classList.add('hl')}
+  cellInput(r,c).parentElement.classList.add('act');
+  const li=document.querySelector(`.xw-clues li[data-n="${w.n}"][data-d="${w.d?1:0}"]`);if(li){li.classList.add('act')}
+  document.getElementById('xw-current').innerHTML=`<b>${w.n} ${w.d?'vertical':'horizontal'}</b> · ${w.clue} (${w.w.length})`}
+function stepTo(r,c){const inp=cellInput(r,c);if(inp){inp.focus()}}
+function moveSel(dir){if(!xw.sel)return;const [r,c]=xw.sel;const w=wordAt(r,c,xw.dir);if(!w)return;const idx=xw.dir?r-w.r:c-w.c;const ni=idx+dir;if(ni<0||ni>=w.w.length)return;stepTo(w.r+(w.d?ni:0),w.c+(w.d?0:ni))}
+function saveXW(){sset(xwKey(),JSON.stringify({seed:xw.seed,fill:xw.fill}))}
+function wordDone(p){for(let i=0;i<p.w.length;i++){if((xw.fill[(p.r+(p.d?i:0))+','+(p.c+(p.d?0:i))]||'')!==p.w[i])return false}return true}
+function updXWStatus(){const total=xw.placed.length,done=xw.placed.filter(wordDone).length;
+  document.querySelectorAll('.xw-clues li').forEach(li=>{const p=xw.placed.find(p=>p.n==li.dataset.n&&p.d===(li.dataset.d==='1'));li.classList.toggle('done',p&&wordDone(p))});
+  document.getElementById('g-prog').style.width=(100*done/total)+'%';
+  const st=document.getElementById('g-status');st.textContent=done===total?`Bravo Marie, grille complète ! ${total} mots.`:`${done}/${total} mots trouvés`;
+  if(done===total){const sc=JSON.parse(sget('smt:xw:scores')||'{}');sc[xw.theme]=(sc[xw.theme]||0)+1;sset('smt:xw:scores',JSON.stringify(sc));renderScores()}}
+function renderScores(){const sc=JSON.parse(sget('smt:xw:scores')||'{}');const keys=Object.keys(sc);document.getElementById('xw-scores').textContent=keys.length?keys.map(k=>`${k} : ${sc[k]} grille${sc[k]>1?'s':''} complétée${sc[k]>1?'s':''}`).join(' · '):'Aucune grille complétée pour l\'instant. La première est pour aujourd\'hui.'}
+function checkPuzzle(){let bad=0;document.querySelectorAll('.xw input').forEach(i=>{const k=i.dataset.r+','+i.dataset.c;const ch=xw.grid[i.dataset.r][i.dataset.c];i.parentElement.classList.remove('ok','bad');if(i.value){if(i.value===ch)i.parentElement.classList.add('ok');else{i.parentElement.classList.add('bad');bad++}}});
+  document.getElementById('g-status').textContent=bad?`${bad} lettre${bad>1?'s':''} à corriger (en rouge).`:'Tout ce qui est rempli est juste. Continue !'}
+function revealWord(){if(!xw.sel)return;const w=wordAt(xw.sel[0],xw.sel[1],xw.dir);if(!w)return;for(let i=0;i<w.w.length;i++){const r=w.r+(w.d?i:0),c=w.c+(w.d?0:i);xw.fill[r+','+c]=w.w[i];const inp=cellInput(r,c);if(inp){inp.value=w.w[i];inp.parentElement.classList.remove('bad');inp.parentElement.classList.add('ok')}}saveXW();updXWStatus()}
+function resetPuzzle(){xw.fill={};saveXW();document.querySelectorAll('.xw input').forEach(i=>{i.value='';i.parentElement.classList.remove('ok','bad')});updXWStatus()}
+(function(){const sel=document.getElementById('g-theme');for(const t in XW_THEMES){const o=document.createElement('option');o.textContent=t;sel.appendChild(o)}sel.addEventListener('change',()=>newPuzzle(false));newPuzzle(false)})();
 
 /* ---------- PWA ---------- */
 if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}

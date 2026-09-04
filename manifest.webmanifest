@@ -19,6 +19,7 @@
     { "name": "Aujourd'hui", "url": "./#today" },
     { "name": "Banque d'idées", "url": "./#ideas" },
     { "name": "Calendrier", "url": "./#calendar" },
+    { "name": "Mots croisés", "url": "./#game" },
     { "name": "Assistante IA", "url": "./#ai" }
   ]
 }
