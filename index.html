@@ -23,7 +23,9 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;color:var(--ink);font-family:'Karla',system-ui,sans-serif;font-size:16px;line-height:1.55}
-body{background:linear-gradient(160deg,#FBF1F3 0%,#F6E4EA 35%,#F3E9E3 70%,#FBF7F4 100%);background-attachment:fixed;-webkit-font-smoothing:antialiased}
+body{background:linear-gradient(160deg,#FBF1F3 0%,#F6E4EA 35%,#F3E9E3 70%,#FBF7F4 100%);background-attachment:fixed;-webkit-font-smoothing:antialiased;overflow-x:hidden;-webkit-tap-highlight-color:transparent;overscroll-behavior-y:none}
+html{overflow-x:hidden}
+img,canvas,video{max-width:100%}
 h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:500;line-height:1.15;margin:0 0 .4em;letter-spacing:-.01em;color:var(--plum)}
 h1{font-size:2.1rem} h2{font-size:1.5rem;margin-top:1.4em} h3{font-size:1.15rem;margin-top:1.2em} h4{font-size:1rem;margin-top:1em;font-family:'Karla';font-weight:600;color:var(--ink)}
 p{margin:.35em 0 .9em;max-width:72ch}
@@ -42,7 +44,7 @@ label{display:block;font-weight:600;font-size:.9rem;margin:.9em 0 .3em}
 #sakura{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
 
 /* ---- splash ---- */
-#splash{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;cursor:pointer;background:radial-gradient(ellipse at 30% 20%,rgba(255,255,255,.55),transparent 55%),linear-gradient(160deg,#F7DCE5 0%,#EFC8D6 45%,#E7B4C6 100%);transition:opacity .7s ease,transform .7s ease;padding:24px}
+#splash{position:fixed;inset:0;height:100dvh;z-index:100;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;cursor:pointer;background:radial-gradient(ellipse at 30% 20%,rgba(255,255,255,.55),transparent 55%),linear-gradient(160deg,#F7DCE5 0%,#EFC8D6 45%,#E7B4C6 100%);transition:opacity .7s ease,transform .7s ease;padding:24px}
 #splash.hide{opacity:0;transform:scale(1.04);pointer-events:none}
 #splash .glass{background:var(--glass);border:1.5px solid var(--glass-border);box-shadow:var(--glass-shadow);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);border-radius:32px;padding:56px 48px;max-width:560px;animation:float 6s ease-in-out infinite}
 #splash h1{font-size:clamp(2.6rem,8vw,4.4rem);font-style:italic;font-weight:400;color:var(--plum);margin:0 0 .2em;font-variation-settings:"SOFT" 100}
@@ -54,13 +56,15 @@ label{display:block;font-weight:600;font-size:.9rem;margin:.9em 0 .3em}
 
 /* ---- layout ---- */
 .app{display:grid;grid-template-columns:240px 1fr;min-height:100vh;position:relative;z-index:1}
-nav{background:linear-gradient(180deg,rgba(59,30,61,.94),rgba(74,44,42,.94));color:#fff;padding:28px 16px;position:sticky;top:0;height:100vh;overflow:auto;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-right:1px solid rgba(255,255,255,.12)}
+nav{z-index:30;background:linear-gradient(180deg,rgba(59,30,61,.94),rgba(74,44,42,.94));color:#fff;padding:28px 16px;position:sticky;top:0;height:100vh;height:100dvh;overflow:auto;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-right:1px solid rgba(255,255,255,.12)}
 nav .brand{font-family:'Fraunces',serif;font-size:1.3rem;margin:0 8px 22px;line-height:1.2;font-style:italic}
 nav .brand small{display:block;font-family:'Karla';font-style:normal;font-size:.75rem;opacity:.7;margin-top:4px}
 nav button{display:block;width:100%;text-align:left;background:transparent;border:0;color:#fff;opacity:.72;padding:.6em .8em;border-radius:12px;margin:2px 0;font-size:.95rem}
 nav button:hover{opacity:1;background:rgba(255,255,255,.1);transform:none;box-shadow:none}
 nav button.active{opacity:1;background:rgba(201,106,140,.85);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
-main{padding:40px 48px 90px;max-width:1120px;width:100%}
+main{padding:40px 48px 90px;max-width:1120px;width:100%;min-width:0}
+.two>*,.three>*,.four>*,.ladder>*,.cal>*{min-width:0}
+.app{min-width:0}
 section.view{display:none;animation:fadeup .35s ease} section.view.active{display:block}
 @keyframes fadeup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .lede{font-size:1.1rem;color:var(--ink-2);max-width:66ch}
@@ -69,7 +73,7 @@ section.view{display:none;animation:fadeup .35s ease} section.view.active{displa
 .four{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 
 /* ---- liquid glass cards ---- */
-.card{background:var(--glass);border:1.5px solid var(--glass-border);border-radius:var(--radius);padding:20px 22px;backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);box-shadow:var(--glass-shadow);position:relative;overflow:hidden}
+.card{min-width:0;isolation:isolate;background:var(--glass);border:1.5px solid var(--glass-border);border-radius:var(--radius);padding:20px 22px;backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);box-shadow:var(--glass-shadow);position:relative;overflow:hidden}
 .card::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,0) 40%,rgba(255,255,255,0) 60%,rgba(255,255,255,.25) 100%);pointer-events:none}
 .card>*{position:relative}
 .card h3{margin-top:0}
@@ -142,10 +146,18 @@ th{background:rgba(242,217,227,.5);font-weight:600}
 
 @media(max-width:860px){
   .app{grid-template-columns:1fr}
-  nav{height:auto;position:sticky;padding:10px 10px;display:flex;gap:4px;overflow-x:auto;white-space:nowrap;border-right:0;border-bottom:1px solid rgba(255,255,255,.15)}
+  nav{height:auto;position:fixed;top:auto;bottom:0;left:0;right:0;padding:8px 8px calc(8px + env(safe-area-inset-bottom));display:flex;gap:4px;overflow-x:auto;overflow-y:hidden;white-space:nowrap;border-right:0;border-top:1px solid rgba(255,255,255,.18);scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;box-shadow:0 -8px 24px rgba(59,30,61,.25)}
+  nav::-webkit-scrollbar{display:none}
   nav .brand{display:none}
-  nav button{width:auto;display:inline-block;font-size:.85rem;padding:.5em .75em}
-  main{padding:22px 16px 70px}
+  nav button{width:auto;display:inline-block;flex:none;font-size:.88rem;padding:.6em .9em;scroll-snap-align:center;min-height:44px}
+  main{padding:calc(18px + env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) calc(96px + env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left))}
+  h1{font-size:1.75rem}
+  input,textarea,select{font-size:16px}
+  .filters input{width:100%}
+  .row select,.row input{flex:1 1 140px}
+  .hello .card{width:100%}
+  .draw{padding:22px 20px}
+  .funnel div{text-align:left}
   .two,.three,.four,.ladder{grid-template-columns:1fr}
   .ladder .card.mid{transform:none}
   .funnel{flex-direction:column}
@@ -673,7 +685,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches)frame();})();
 const nav=document.getElementById('nav');
 function go(id){nav.querySelectorAll('button').forEach(x=>x.classList.toggle('active',x.dataset.v===id));
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.getElementById('v-'+id).classList.add('active');window.scrollTo(0,0);location.hash=id}
+  document.getElementById('v-'+id).classList.add('active');window.scrollTo(0,0);location.hash=id;const ab=nav.querySelector('button.active');if(ab&&ab.scrollIntoView)ab.scrollIntoView({block:'nearest',inline:'center'})}
 nav.addEventListener('click',e=>{const b=e.target.closest('button');if(b)go(b.dataset.v)});
 if(location.hash&&document.getElementById('v-'+location.hash.slice(1)))go(location.hash.slice(1));
 

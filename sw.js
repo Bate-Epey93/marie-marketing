@@ -1,5 +1,5 @@
 // Service worker — offline-first for a fully static app. Bump VERSION when shipping.
-const VERSION = 'marie-v1';
+const VERSION = 'marie-v2';
 const BASE = self.registration.scope;
 const DEV = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(self.location.hostname);
 const ASSETS = ['', 'index.html', 'manifest.webmanifest',
